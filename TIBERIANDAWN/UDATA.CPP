@@ -142,7 +142,7 @@ static UnitTypeClass const UnitFTank(
 		false,			// Is the unit capable of cloaking?
 		false,			// Does the unit have a constant animation?
 	-1,										// AMMO:			Number of shots it has (default).
-	300,										// STRENGTH:	Strength (in damage points).
+	400,										// STRENGTH:	Strength (in damage points).
 	4,											// SIGHTRANGE:	Range of sighting.
 	800,										// COST:			Cost to build (Credits).
 	9,											// SCENARIO:	Starting availability scenario.
@@ -170,7 +170,7 @@ static UnitTypeClass const UnitSTank(
 	TXT_STANK,								// NAME:			Text name of this unit type.
 	"STNK",									// NAME:			Text name of this unit type.
 	ANIM_FRAG2,							// EXPLOSION:	Type of explosion when destroyed.
-	5,								// Build level.
+	1,								// Build level.
 	STRUCTF_RADAR,				// Building prerequisite.
 		true,				// Can this be a goodie surprise from a crate?
 		true,				// Is a leader type?
@@ -199,10 +199,10 @@ static UnitTypeClass const UnitSTank(
 		true,				// Is the unit capable of cloaking?
 		false,			// Does the unit have a constant animation?
 	-1,										// AMMO:			Number of shots it has (default).
-	110,										// STRENGTH:	Strength (in damage points).
+	200,										// STRENGTH:	Strength (in damage points).
 	4,											// SIGHTRANGE:	Range of sighting.
 	900,										// COST:			Cost to build (Credits).
-	12,										// SCENARIO:	Starting availability scenario.
+	1,										// SCENARIO:	Starting availability scenario.
 	80,81,									// RISK/RWRD:	Risk/reward rating values.
 	HOUSEF_MULTI1|
 	HOUSEF_MULTI2|
@@ -212,7 +212,7 @@ static UnitTypeClass const UnitSTank(
 	HOUSEF_MULTI6|
 	HOUSEF_JP|
 	HOUSEF_BAD,								// OWNABLE:		Ownable by house (bit field).
-	WEAPON_DRAGON,WEAPON_NONE,
+	WEAPON_OBELISK_LASER,WEAPON_NONE,
 	ARMOR_ALUMINUM,						// ARMOR:		Armor type
 	SPEED_TRACK,							// MOVE:			Locomotion type.
 	MPH_MEDIUM_FAST,						// SPEED:		Miles per hour.
@@ -227,7 +227,7 @@ static UnitTypeClass const UnitLTank(
 	TXT_LTANK,								// NAME:			Text name of this unit type.
 	"LTNK",									// NAME:			Text name of this unit type.
 	ANIM_FRAG1,							// EXPLOSION:	Type of explosion when destroyed.
-	3,								// Build level.
+	1,								// Build level.
 	STRUCTF_NONE,				// Building prerequisite.
 		true,				// Can this be a goodie surprise from a crate?
 		true,				// Is a leader type?
@@ -256,10 +256,10 @@ static UnitTypeClass const UnitLTank(
 		false,			// Is the unit capable of cloaking?
 		false,			// Does the unit have a constant animation?
 	-1,										// AMMO:			Number of shots it has (default).
-	300,										// STRENGTH:	Strength (in damage points).
-	3,											// SIGHTRANGE:	Range of sighting.
+	800,										// STRENGTH:	Strength (in damage points).
+	6,											// SIGHTRANGE:	Range of sighting.
 	600,										// COST:			Cost to build (Credits).
-	5,											// SCENARIO:	Starting availability scenario.
+	1,											// SCENARIO:	Starting availability scenario.
 	80,56,									// RISK/RWRD:	Risk/reward rating values.
 	HOUSEF_MULTI1|
 	HOUSEF_MULTI2|
@@ -269,7 +269,7 @@ static UnitTypeClass const UnitLTank(
 	HOUSEF_MULTI6|
 	HOUSEF_JP|
 	HOUSEF_BAD,								// OWNABLE:		Ownable by house (bit field).
-	WEAPON_75MM,WEAPON_NONE,
+	WEAPON_105MM,WEAPON_NONE,
 	ARMOR_STEEL,							// ARMOR:		Armor type
 	SPEED_TRACK,							// MOVE:			Locomotion type.
 	MPH_MEDIUM,								// SPEED:		Miles per hour.
@@ -515,7 +515,7 @@ static UnitTypeClass const UnitSAM(
 	TXT_MSAM,								// NAME:			Text name of this unit type.
 	"MLRS",									// NAME:			Text name of this unit type.
 	ANIM_FRAG2,							// EXPLOSION:	Type of explosion when destroyed.
-	7,								// Build level.
+	10,								// Build level.
 	STRUCTF_ATOWER,			// Building prerequisite.
 		true,				// Can this be a goodie surprise from a crate?
 		true,				// Is a leader type?
@@ -573,7 +573,7 @@ static UnitTypeClass const UnitArty(
 	TXT_ARTY,								// NAME:			Text name of this unit type.
 	"ARTY",									// NAME:			Text name of this unit type.
 	ANIM_ART_EXP1,							// EXPLOSION:	Type of explosion when destroyed.
-	6,								// Build level.
+	8,								// Build level.
 	STRUCTF_NONE,				// Building prerequisite.
 		true,				// Can this be a goodie surprise from a crate?
 		true,				// Is a leader type?
@@ -804,7 +804,7 @@ static UnitTypeClass const UnitBuggy(
 	TXT_DUNE_BUGGY,						// NAME:			Text name of this unit type.
 	"BGGY",									// NAME:			Text name of this unit type.
 	ANIM_FRAG1,							// EXPLOSION:	Type of explosion when destroyed.
-	4,								// Build level.
+	1,								// Build level.
 	STRUCTF_NONE,				// Building prerequisite.
 		true,				// Can this be a goodie surprise from a crate?
 		true,				// Is a leader type?
@@ -833,10 +833,10 @@ static UnitTypeClass const UnitBuggy(
 		false,			// Is the unit capable of cloaking?
 		false,			// Does the unit have a constant animation?
 	-1,										// AMMO:			Number of shots it has (default).
-	140,										// STRENGTH:	Strength (in damage points).
-	2,											// SIGHTRANGE:	Range of sighting.
+	300,										// STRENGTH:	Strength (in damage points).
+	5,											// SIGHTRANGE:	Range of sighting.
 	300,										// COST:			Cost to build (Credits).
-	5,											// SCENARIO:	Starting availability scenario.
+	1,											// SCENARIO:	Starting availability scenario.
 	80,42, 									// RISK/RWRD:	Risk/reward rating values.
 	HOUSEF_MULTI1|
 	HOUSEF_MULTI2|
@@ -846,7 +846,7 @@ static UnitTypeClass const UnitBuggy(
 	HOUSEF_MULTI6|
 	HOUSEF_JP|
 	HOUSEF_BAD,								// OWNABLE:		Ownable by house (bit field).
-	WEAPON_M60MG,WEAPON_NONE,
+	WEAPON_CHAIN_GUN,WEAPON_NONE,
 	ARMOR_ALUMINUM,						// ARMOR:		Armor type
 	SPEED_WHEEL,							// MOVE:			Locomotion type.
 	MPH_MEDIUM_FAST,						// SPEED:		Miles per hour.
@@ -861,7 +861,7 @@ static UnitTypeClass const UnitBike(
 	TXT_BIKE,								// NAME:			Text name of this unit type.
 	"BIKE",									// NAME:			Text name of this unit type.
 	ANIM_FRAG1,							// EXPLOSION:	Type of explosion when destroyed.
-	2,								// Build level.
+	1,								// Build level.
 	STRUCTF_NONE,				// Building prerequisite.
 		true,				// Can this be a goodie surprise from a crate?
 		true,				// Is a leader type?
@@ -893,11 +893,11 @@ static UnitTypeClass const UnitBike(
 #ifdef ADVANCED
 	90,										// STRENGTH:	Strength (in damage points).
 #else
-	160,										// STRENGTH:	Strength (in damage points).
+	300,										// STRENGTH:	Strength (in damage points).
 #endif
-	2,											// SIGHTRANGE:	Range of sighting.
+	5,											// SIGHTRANGE:	Range of sighting.
 	500,										// COST:			Cost to build (Credits).
-	5,											// SCENARIO:	Starting availability scenario.
+	1,											// SCENARIO:	Starting availability scenario.
 	80,45, 									// RISK/RWRD:	Risk/reward rating values.
 	HOUSEF_MULTI1|
 	HOUSEF_MULTI2|
@@ -907,7 +907,7 @@ static UnitTypeClass const UnitBike(
 	HOUSEF_MULTI6|
 	HOUSEF_JP|
 	HOUSEF_BAD,								// OWNABLE:		Ownable by house (bit field).
-	WEAPON_DRAGON,WEAPON_NONE,
+	WEAPON_MLRS,WEAPON_NONE,
 	ARMOR_WOOD,								// ARMOR:		Armor type
 	SPEED_WHEEL,							// MOVE:			Locomotion type.
 	MPH_FAST,								// SPEED:		Miles per hour.

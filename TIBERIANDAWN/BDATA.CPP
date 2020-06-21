@@ -171,7 +171,7 @@ static BuildingTypeClass const ClassTemple(
 	TXT_TEMPLE,								// NAME:			Short name of the structure.
 	"TMPL",									// NAME:			Short name of the structure.
 	XYP_COORD(0,0),						// Exit point for produced units.
-	7,								// Build level.
+	1,								// Build level.
 	STRUCTF_RADAR,				// Building prerequisite.
 		false,		// Has ability to detect adjacent cloaked objects?
 		false,		// Animation rate is regulated for constant speed?
@@ -199,7 +199,7 @@ static BuildingTypeClass const ClassTemple(
 	1000,										// STRNTH:		Full strength of building.
 	4,											// SIGHTRANGE:	Range of sighting.
 	3000,										// COST:			Cost to purchase.
-	13,										// SCENARIO:	Starting availability scenario.
+	1,										// SCENARIO:	Starting availability scenario.
 	0,20, 									// RISK/RWRD:	Risk/reward rating values.
 	HOUSEF_MULTI1|
 	HOUSEF_MULTI2|
@@ -452,7 +452,7 @@ static BuildingTypeClass const ClassObelisk(
 	TXT_OBELISK,							// NAME:			Short name of the structure.
 	"OBLI",									// NAME:			Short name of the structure.
 	XYP_COORD(0,0),						// Exit point for produced units.
-	4,								// Build level.
+	1,								// Build level.
 	STRUCTF_RADAR,				// Building prerequisite.
 		true,			// Has ability to detect adjacent cloaked objects?
 		false,		// Animation rate is regulated for constant speed?
@@ -477,10 +477,10 @@ static BuildingTypeClass const ClassObelisk(
 		false,		// Does building care less if placed on concrete?
 	RTTI_NONE,								// The object type produced at this factory.
 	DIR_N,									// Starting idle frame to match construction.
-	200,										// STRNTH:		Full strength of building.
+	400,										// STRNTH:		Full strength of building.
 	5,											// SIGHTRANGE:	Range of sighting.
-	1500,										// COST:			Cost to purchase.
-	11,										// SCENARIO:	Starting availability scenario.
+	1000,										// COST:			Cost to purchase.
+	1,										// SCENARIO:	Starting availability scenario.
 	100,35,									// RISK/RWRD:	Risk/reward rating values.
 	HOUSEF_MULTI1|
 	HOUSEF_MULTI2|
@@ -495,7 +495,7 @@ static BuildingTypeClass const ClassObelisk(
 	0,											// CANENTER:	Units that can enter building.
 	0,											// CAPACITY:	Spice storage capacity.
 	0,											// POWER:		Power points required.
-	150,										// DRAIN:		Power points required.
+	100,										// DRAIN:		Power points required.
 	BSIZE_12, 								// SIZE:			Building size.
 	NULL,										// Preferred exit cell list.
 	(short const *)List12,			// OCCUPYLIST:	List of active foundation squares.
@@ -507,7 +507,7 @@ static BuildingTypeClass const ClassTurret(
 	TXT_TURRET,								// NAME:			Short name of the structure.
 	"GUN",									// NAME:			Short name of the structure.
 	XYP_COORD(0,0),						// Exit point for produced units.
-	2,								// Build level.
+	1,								// Build level.
 	STRUCTF_BARRACKS,			// Building prerequisite.
 		true,			// Has ability to detect adjacent cloaked objects?
 		false,		// Animation rate is regulated for constant speed?
@@ -538,12 +538,12 @@ static BuildingTypeClass const ClassTurret(
 	600,										// COST:			Cost to purchase.
 #else
 #ifdef PATCH
-	600,
+	400,
 #else
 	250,										// COST:			Cost to purchase.
 #endif
 #endif
-	8,											// SCENARIO:	Starting availability scenario.
+	1,											// SCENARIO:	Starting availability scenario.
 	300,26,									// RISK/RWRD:	Risk/reward rating values.
 	HOUSEF_MULTI1|
 	HOUSEF_MULTI2|
@@ -553,7 +553,7 @@ static BuildingTypeClass const ClassTurret(
 	HOUSEF_MULTI6|
 	HOUSEF_JP|
 	HOUSEF_BAD,								// OWNABLE:		Ownable by house (bit field).
-	WEAPON_TURRET_GUN,WEAPON_NONE,
+	WEAPON_TURRET_GUN, WEAPON_CHAIN_GUN,
 	ARMOR_STEEL,							// ARMOR:		Armor type
 	0,											// CANENTER:	Units that can enter building.
 	0,											// CAPACITY:	Spice storage capacity.
@@ -668,7 +668,7 @@ static BuildingTypeClass const ClassRefinery(
 	WEAPON_NONE,WEAPON_NONE,
 	ARMOR_WOOD,								// ARMOR:		Armor type
 	0,											// CANENTER:	Units that can enter building.
-	1000,										// CAPACITY:	Spice storage capacity.
+	10000,										// CAPACITY:	Spice storage capacity.
 	10,										// POWER:		Power points required.
 	40,										// DRAIN:		Power points required.
 	BSIZE_33, 								// SIZE:			Building size.
@@ -725,7 +725,7 @@ static BuildingTypeClass const ClassStorage(
 	WEAPON_NONE,WEAPON_NONE,
 	ARMOR_WOOD,								// ARMOR:		Armor type
 	0,											// CANENTER:	Units that can enter building.
-	1500,										// CAPACITY:	Spice storage capacity.
+	10000,										// CAPACITY:	Spice storage capacity.
 	0,											// POWER:		Power points required.
 	10,										// DRAIN:		Power points required.
 	BSIZE_21, 								// SIZE:			Building size.
@@ -795,7 +795,7 @@ static BuildingTypeClass const ClassCommand(
 	TXT_COMMAND,							// NAME:			Short name of the structure.
 	"HQ",										// NAME:			Short name of the structure.
 	XYP_COORD(0,0),						// Exit point for produced units.
-	2,								// Build level.
+	1,								// Build level.
 	STRUCTF_REFINERY,			// Building prerequisite.
 		true,			// Has ability to detect adjacent cloaked objects?
 		true,			// Animation rate is regulated for constant speed?
@@ -823,7 +823,7 @@ static BuildingTypeClass const ClassCommand(
 	500,										// STRNTH:		Full strength of building.
 	10,										// SIGHTRANGE:	Range of sighting.
 	1000,										// COST:			Cost to purchase.
-	3,											// SCENARIO:	Starting availability scenario.
+	1,											// SCENARIO:	Starting availability scenario.
 	0,20, 									// RISK/RWRD:	Risk/reward rating values.
 	HOUSEF_MULTI1|
 	HOUSEF_MULTI2|
@@ -906,7 +906,7 @@ static BuildingTypeClass const ClassAirStrip(
 	TXT_AIRSTRIP,							// NAME:			Short name of the structure.
 	"AFLD",									// NAME:			Short name of the structure.
 	XYP_COORD(0,0),						// Exit point for produced units.
-	2,								// Build level.
+	1,								// Build level.
 	STRUCTF_REFINERY,			// Building prerequisite.
 		false,		// Has ability to detect adjacent cloaked objects?
 		true,			// Animation rate is regulated for constant speed?
@@ -934,7 +934,7 @@ static BuildingTypeClass const ClassAirStrip(
 	500,										// STRNTH:		Full strength of building.
 	5,											// SIGHTRANGE:	Range of sighting.
 	2000,										// COST:			Cost to purchase.
-	5,											// SCENARIO:	Starting availability scenario.
+	1,											// SCENARIO:	Starting availability scenario.
 	300,86,									// RISK/RWRD:	Risk/reward rating values.
 	HOUSEF_MULTI1|
 	HOUSEF_MULTI2|
@@ -1350,7 +1350,7 @@ static BuildingTypeClass const ClassRepair(
 	TXT_FIX_IT,								// NAME:			Short name of the structure.
 	"FIX",									// NAME:			Short name of the structure.
 	XYP_COORD(0,0),						// Exit point for produced units.
-	5,								// Build level.
+	1,								// Build level.
 	STRUCTF_POWER,							// PREREQ:		Buildings that must exist first.
 		false,		// Has ability to detect adjacent cloaked objects?
 		true,			// Animation rate is regulated for constant speed?
@@ -1378,7 +1378,7 @@ static BuildingTypeClass const ClassRepair(
 	400,										// STRNTH:		Full strength of building.
 	3,											// SIGHTRANGE:	Range of sighting.
 	1200,										// COST:			Cost to purchase.
-	8,											// SCENARIO:	Starting availability scenario.
+	1,											// SCENARIO:	Starting availability scenario.
 	0,46,										// RISK/RWRD:	Risk/reward rating values.
 	HOUSEF_MULTI1|
 	HOUSEF_MULTI2|

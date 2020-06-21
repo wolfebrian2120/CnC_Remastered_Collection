@@ -195,7 +195,7 @@ static InfantryTypeClass const E2(
 	&GrenadierDos[0][0],		// Ptr to grenadier DO table (above)
 	14,							// Frame of projectile launch.
 	6,								// Frame of projectile launch while prone.
-	50,							// Strength of infantry (in damage points).
+	25,							// Strength of infantry (in damage points).
 	1,								// Sight range.
 	160,							// Cost of infantry (in credits).
 	3,								// Scenario when they first appear.
@@ -276,7 +276,7 @@ static InfantryTypeClass const E3(
 	3,								// Frame of projectile launch while prone.
 	25,							// Strength of infantry (in damage points).
 	2,								// Sight range.
-	300,							// Cost of infantry (in credits).
+	150,							// Cost of infantry (in credits).
 	3,								// Scenario when they first appear.
 	80,10,						// Risk/Reward of this infantry unit.
 	HOUSEF_MULTI1|
@@ -351,10 +351,10 @@ static InfantryTypeClass const E4(
 	&FlamethrowerDos[0][0],	// ptr to DO table (above)
 	2,								// Frame of projectile launch.
 	0,								// Frame of projectile launch while prone.
-	70,							// Strength of infantry (in damage points).
+	200,							// Strength of infantry (in damage points).
 	1,								// Sight range.
 	200,							// Cost of infantry (in credits).
-	5,								// Scenario when they first appear.
+	1,								// Scenario when they first appear.
 	80,10,						// Risk/Reward of this infantry unit.
 	HOUSEF_MULTI1|
 	HOUSEF_MULTI2|
@@ -413,7 +413,7 @@ static InfantryTypeClass const E5(
 	INFANTRY_E5,				// Infantry type number.
 	TXT_E5,						// Translate name number for infantry type.
 	"E5",							// INI name for infantry.
-	7,								// Build level.
+	1,								// Build level.
 	STRUCTF_EYE,				// Building prerequisite.
 	false,						// Is this a female type?
 	true,							// Is a leader type?
@@ -427,10 +427,10 @@ static InfantryTypeClass const E5(
 	&ChemwarriorDos[0][0],	// ptr to DO table
 	2,								// Frame of projectile launch.
 	0,								// Frame of projectile launch while prone.
-	70,							// Strength of infantry (in damage points).
+	200,							// Strength of infantry (in damage points).
 	1,								// Sight range.
 	300,							// Cost of infantry (in credits).
-	99,							// Scenario when they first appear.
+	1,							// Scenario when they first appear.
 	80,10,						// Risk/Reward of this infantry unit.
 	HOUSEF_MULTI1|
 	HOUSEF_MULTI2|
@@ -503,9 +503,9 @@ static InfantryTypeClass const E7(
 	&EngineerDos[0][0],		// ptr to DO table
 	3,								// Frame of projectile launch.
 	3,								// Frame of projectile launch while prone.
-	25,							// Strength of infantry (in damage points).
+	50,							// Strength of infantry (in damage points).
 	2,								// Sight range.
-	500,							// Cost of infantry (in credits).
+	100,							// Cost of infantry (in credits).
 	2,								// Scenario when they first appear.
 	80,75,						// Risk/Reward of this infantry unit.
 	HOUSEF_MULTI1|
@@ -564,8 +564,8 @@ static InfantryTypeClass const Commando(
 	INFANTRY_RAMBO,			// Infantry type number.
 	TXT_RAMBO,					// Translate name number for infantry type.
 	"RMBO",						// INI name for infantry.
-	7,								// Build level.
-	STRUCTF_EYE,				// Building prerequisite.
+	1,								// Build level.
+	STRUCT_RADAR,				// Building prerequisite.
 	false,						// Is this a female type?
 	true,							// Is a leader type?
 	true,							// Has crawling animation frames?
@@ -578,10 +578,10 @@ static InfantryTypeClass const Commando(
 	&CommandoDos[0][0],		// ptr to DO table
 	2,								// Frame of projectile launch.
 	2,								// Frame of projectile launch while prone.
-	80,							// Strength of infantry (in damage points).
+	200,							// Strength of infantry (in damage points).
 	5,								// Sight range.
-	1000,							// Cost of infantry (in credits).
-	98,							// Scenario when they first appear.
+	500,							// Cost of infantry (in credits).
+	1,							// Scenario when they first appear.
 	80,75,						// Risk/Reward of this infantry unit.
 	HOUSEF_MULTI1|
 	HOUSEF_MULTI2|
@@ -592,7 +592,7 @@ static InfantryTypeClass const Commando(
 	HOUSEF_JP|
 	HOUSEF_GOOD|
 	HOUSEF_BAD,					// Who can own this infantry unit.
-	WEAPON_RIFLE,WEAPON_NONE,
+	WEAPON_OBELISK_LASER,WEAPON_NONE,
 	MPH_SLOW_ISH			// Maximum speed of infantry.
 );
 

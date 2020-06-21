@@ -149,7 +149,7 @@ static AircraftTypeClass const AttackHeli(
 	AIRCRAFT_HELICOPTER,	// What kind of aircraft is this.
 	TXT_HELI,				// Translated text number for aircraft.
 	"HELI",					// INI name of aircraft.
-	6,							// Build level.
+	1,							// Build level.
 	STRUCTF_HELIPAD,		// Building prerequisite.
 		true,					// Is a leader type?
 		true,					// Does it fire a pair of shots in quick succession?
@@ -172,7 +172,7 @@ static AircraftTypeClass const AttackHeli(
 	125,						// The strength of this unit.
 	0,							// The range that it reveals terrain around itself.
 	1200,						// Credit cost to construct.
-	10,						// The scenario this becomes available.
+	1,						// The scenario this becomes available.
 	10,80,					// Risk, reward when calculating AI.
 	HOUSEF_MULTI1|
 	HOUSEF_MULTI2|
@@ -195,7 +195,7 @@ static AircraftTypeClass const OrcaHeli(
 	AIRCRAFT_ORCA,			// What kind of aircraft is this.
 	TXT_ORCA,				// Translated text number for aircraft.
 	"ORCA",					// INI name of aircraft.
-	6,							// Build level.
+	1,							// Build level.
 	STRUCTF_HELIPAD,		// Building prerequisite.
 		true,					// Is a leader type?
 		true,					// Does it fire a pair of shots in quick succession?
@@ -218,7 +218,7 @@ static AircraftTypeClass const OrcaHeli(
 	125,						// The strength of this unit.
 	0,							// The range that it reveals terrain around itself.
 	1200,						// Credit cost to construct.
-	10,						// The scenario this becomes available.
+	1,						// The scenario this becomes available.
 	10,80,					// Risk, reward when calculating AI.
 	HOUSEF_MULTI1|
 	HOUSEF_MULTI2|
