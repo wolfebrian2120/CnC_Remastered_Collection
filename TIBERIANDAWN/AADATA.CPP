@@ -76,8 +76,8 @@ static AircraftTypeClass const AttackPlane(
 		false,				// Can it be repaired in a repair facility?
 		false,				// Can the player construct or order this unit?
 		true,					// Is there a crew inside?
-	3,							// Number of shots it has (default).
-	60,						// The strength of this unit.
+	5,							// Number of shots it has (default).
+	200,						// The strength of this unit.
 	0,							// The range that it reveals terrain around itself.
 	800,						// Credit cost to construct.
 	0,							// The scenario this becomes available.
@@ -103,7 +103,7 @@ static AircraftTypeClass const TransportHeli(
 	AIRCRAFT_TRANSPORT,	// What kind of aircraft is this.
 	TXT_TRANS,				// Translated text number for aircraft.
 	"TRAN",					// INI name of aircraft.
-	6,							// Build level.
+	1,							// Build level.
 	STRUCTF_HELIPAD,		// Building prerequisite.
 		false,				// Is a leader type?
 		false,				// Does it fire a pair of shots in quick succession?
@@ -123,10 +123,10 @@ static AircraftTypeClass const TransportHeli(
 		true,					// Can the player construct or order this unit?
 		true,					// Is there a crew inside?
 	0,							// Number of shots it has (default).
-	90,						// The strength of this unit.
+	250,						// The strength of this unit.
 	0,							// The range that it reveals terrain around itself.
-	1500,						// Credit cost to construct.
-	98,						// The scenario this becomes available.
+	1000,						// Credit cost to construct.
+	1,						// The scenario this becomes available.
 	10,80,					// Risk, reward when calculating AI.
 	HOUSEF_MULTI1|
 	HOUSEF_MULTI2|
@@ -195,7 +195,7 @@ static AircraftTypeClass const OrcaHeli(
 	AIRCRAFT_ORCA,			// What kind of aircraft is this.
 	TXT_ORCA,				// Translated text number for aircraft.
 	"ORCA",					// INI name of aircraft.
-	6,							// Build level.
+	1,							// Build level.
 	STRUCTF_HELIPAD,		// Building prerequisite.
 		true,					// Is a leader type?
 		true,					// Does it fire a pair of shots in quick succession?
@@ -215,10 +215,10 @@ static AircraftTypeClass const OrcaHeli(
 		true,					// Can the player construct or order this unit?
 		true,					// Is there a crew inside?
 	6,							// Number of shots it has (default).
-	125,						// The strength of this unit.
-	0,							// The range that it reveals terrain around itself.
+	250,						// The strength of this unit.
+	5,							// The range that it reveals terrain around itself.
 	1200,						// Credit cost to construct.
-	10,						// The scenario this becomes available.
+	1,						// The scenario this becomes available.
 	10,80,					// Risk, reward when calculating AI.
 	HOUSEF_MULTI1|
 	HOUSEF_MULTI2|
@@ -251,9 +251,9 @@ static AircraftTypeClass const CargoPlane(
 		false,				// Custom rotor sets for each facing?
 		false,				// Can this aircraft land on clear terrain?
 		false,				// Can the aircraft be crushed by a tracked vehicle?
-		true,					// Is it invisible on radar?
+		false,					// Is it invisible on radar?
 		false,				// Can the player select it so as to give it orders?
-		false,				// Can it be assigned as a target for attack.
+		true,				// Can it be assigned as a target for attack.
 		false,				// Is it insignificant (won't be announced)?
 		false,				// Is it immune to normal combat damage?
 		false,				// Theater specific graphic image?

@@ -215,6 +215,7 @@ TechnoTypeClass::TechnoTypeClass(
 	Reward = reward;
 	Scenario = scenario;
 	SightRange = sightrange;
+	IsSelfHealing = 0;
 
 	/*
 	** Units risk value is based on the type of weapon he has and the
@@ -226,6 +227,110 @@ TechnoTypeClass::TechnoTypeClass(
 		Risk = (Weapons[primary].Attack * (Weapons[primary].Range >> 4)) / Weapons[primary].ROF;
 	}
 }
+
+	TechnoTypeClass::TechnoTypeClass(
+		int name,
+		char const* ininame,
+		unsigned char level,
+		long pre,
+		bool is_leader,
+		bool is_scanner,
+		bool is_nominal,
+		bool is_transporter,
+		bool is_flammable,
+		bool is_crushable,
+		bool is_stealthy,
+		bool is_selectable,
+		bool is_legal_target,
+		bool is_insignificant,
+		bool is_immune,
+		bool is_theater,
+		bool is_twoshooter,
+		bool is_turret_equipped,
+		bool is_repairable,
+		bool is_buildable,
+		bool is_crew,
+		bool is_selfhealing,
+		int ammo,
+		unsigned short strength,
+		MPHType maxspeed,
+		int sightrange,
+		int cost,
+		int scenario,
+		int risk,
+		int reward,
+		int ownable,
+		WeaponType primary,
+		WeaponType secondary,
+		ArmorType armor) :
+	ObjectTypeClass(true,
+		is_flammable,
+		is_crushable,
+		is_stealthy,
+		is_selectable,
+		is_legal_target,
+		is_insignificant,
+		is_immune,
+		name,
+		ininame,
+		armor,
+		strength)
+	{
+		Level = level;
+		Pre = pre;
+		MaxAmmo = ammo;
+		MaxSpeed = maxspeed;
+		CameoData = NULL;
+		Primary = primary,
+			Secondary = secondary,
+			Cost = cost;
+		IsLeader = is_leader;
+		IsScanner = is_scanner;
+		IsTransporter = is_transporter;
+		IsTwoShooter = is_twoshooter;
+		IsBuildable = is_buildable;
+		IsCrew = is_crew;
+		IsTheater = is_theater;
+		IsRepairable = is_repairable;
+		IsTurretEquipped = is_turret_equipped;
+		IsNominal = is_nominal;
+		Ownable = ownable;
+		Reward = reward;
+		Scenario = scenario;
+		SightRange = sightrange;
+		IsSelfHealing = is_selfhealing;
+
+		/*
+		** Units risk value is based on the type of weapon he has and the
+		** rate of fire it shoots at.
+		*/
+		risk = risk;
+		Risk = 0;
+		if (primary != WEAPON_NONE) {
+			Risk = (Weapons[primary].Attack * (Weapons[primary].Range >> 4)) / Weapons[primary].ROF;
+		}
+	}
+
+/***********************************************************************************************
+ * TechnoTypeClass::Raw_Cost -- Fetches the raw (base) cost of the object.                     *
+ *                                                                                             *
+ *    This routine is used to find the underlying cost for this object. The underlying cost    *
+ *    does not include any free items that normally come with the object when purchased        *
+ *    directly. Example: The raw cost of a refinery is the normal cost minus the cost of a     *
+ *    harvester.                                                                               *
+ *                                                                                             *
+ * INPUT:   none                                                                               *
+ *                                                                                             *
+ * OUTPUT:  Returns whether the object selfheals or not.                              *
+ *                                                                                             *
+ * WARNINGS:   none                                                                            *
+ *                                                                                             *
+ * HISTORY:                                                                                    *
+ *   08/13/1995 JLB : Created.                                                                 *
+ *=============================================================================================*/
+	bool TechnoTypeClass::GetSelfHealing() {
+		return (IsSelfHealing);
+	}
 
 
 /***********************************************************************************************
@@ -484,6 +589,7 @@ TechnoClass::TechnoClass(void) :
 	IsTethered = false;
 	SuspendedTarCom = TARGET_NONE;
 	PrimaryFacing.Set(DIR_N);
+	IsSelfHealing = false;
 
 	// Added for multiplayer changes. ST - 3/6/2019 11:34AM
 	IsDiscoveredByPlayerMask = 0;

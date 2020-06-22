@@ -466,6 +466,11 @@ class TechnoTypeClass : public ObjectTypeClass
 		unsigned IsTransporter:1;
 
 		/*
+		**	Is this object set to self heal.
+		*/
+		unsigned IsSelfHealing : 1;
+
+		/*
 		**	Most objects have the ability to reveal the terrain around themselves.
 		**	This sight range (expressed in cell distance) is specified here. If
 		**	this value is 0, then this unit never reveals terrain. Bullets are
@@ -564,6 +569,42 @@ class TechnoTypeClass : public ObjectTypeClass
 				WeaponType secondary,
 				ArmorType armor);
 
+		TechnoTypeClass(
+			int name,
+			char const* ininame,
+			unsigned char level,
+			long pre,
+			bool is_leader,
+			bool is_scanner,
+			bool is_nominal,
+			bool is_transporter,
+			bool is_flammable,
+			bool is_crushable,
+			bool is_stealthy,
+			bool is_selectable,
+			bool is_legal_target,
+			bool is_insignificant,
+			bool is_immune,
+			bool is_theater,
+			bool is_twoshooter,
+			bool is_turret_equipped,
+			bool is_repairable,
+			bool is_buildable,
+			bool is_crew,
+			bool is_selfhealing,
+			int ammo,
+			unsigned short strength,
+			MPHType maxspeed,
+			int sightrange,
+			int cost,
+			int scenario,
+			int risk,
+			int reward,
+			int ownable,
+			WeaponType primary,
+			WeaponType secondary,
+			ArmorType armor);
+
 		virtual int  Raw_Cost(void) const;
 		virtual int  Max_Passengers(void) const;
 		virtual int  Repair_Cost(void) const;
@@ -572,6 +613,7 @@ class TechnoTypeClass : public ObjectTypeClass
 		virtual int  Cost_Of(void) const;
 		virtual int  Time_To_Build(HousesType house) const;
 		virtual unsigned short  Get_Ownable(void) const;
+		virtual bool GetSelfHealing();
 		
 #ifdef USE_RA_AI
 		int Legal_Placement(CELL pos) const;  // From RA for AI. ST - 7/24/2019 5:20PM		
@@ -1034,6 +1076,56 @@ class UnitTypeClass : public TechnoTypeClass
 						unsigned rot,
 						int toffset,
 						MissionType order);
+		UnitTypeClass   (
+						UnitType type,
+						int name,
+						char const* ininame,
+						AnimType exp,
+						unsigned char level,
+						long pre,
+						bool is_goodie,
+						bool is_leader,
+						bool is_eight,
+						bool is_nominal,
+						bool is_transporter,
+						bool is_crushable,
+						bool is_crusher,
+						bool is_harvest,
+						bool is_stealthy,
+						bool is_selectable,
+						bool is_legal_target,
+						bool is_insignificant,
+						bool is_immune,
+						bool is_turret_equipped,
+						bool is_twoshooter,
+						bool is_repairable,
+						bool is_buildable,
+						bool is_crew,
+						bool is_selfhealing,
+						bool is_radar_equipped,
+						bool is_fire_anim,
+						bool is_lock_turret,
+						bool is_tracked,
+						bool is_gigundo,
+						bool is_chunky,
+						bool is_cloakable,
+						bool is_animating,
+						int ammo,
+						unsigned short strength,
+						int sightrange,
+						int cost,
+						int scenario,
+						int risk,
+						int reward,
+						int ownable,
+						WeaponType primary, WeaponType secondary,
+						ArmorType armor,
+						SpeedType speed,
+						MPHType maxSpeed,
+						unsigned rot,
+						int toffset,
+						MissionType order);
+
 		virtual RTTIType  What_Am_I(void) const {return RTTI_UNITTYPE;};
 
 		static UnitType  From_Name(char const *name);
@@ -1161,6 +1253,37 @@ class InfantryTypeClass : public TechnoTypeClass
 						WeaponType primary,
 						WeaponType secondary,
 						MPHType maxSpeed);
+
+		InfantryTypeClass(
+			InfantryType type,
+			int name,
+			char const* ininame,
+			unsigned char level,
+			long pre,
+			bool is_female,
+			bool is_leader,
+			bool is_crawling,
+			bool is_civilian,
+			bool is_nominal,
+			bool is_fraidycat,
+			bool is_capture,
+			bool is_theater,
+			bool is_selfhealing,
+			int ammo,
+			int* do_table,
+			int firelaunch,
+			int pronelaunch,
+			unsigned short strength,
+			int sightrange,
+			int cost,
+			int scenario,
+			int risk,
+			int reward,
+			int ownable,
+			WeaponType primary,
+			WeaponType secondary,
+			MPHType maxSpeed);
+
 		virtual RTTIType  What_Am_I(void) const {return RTTI_INFANTRYTYPE;};
 
 		static InfantryType  From_Name(char const *name);

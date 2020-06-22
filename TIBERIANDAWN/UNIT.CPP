@@ -427,10 +427,14 @@ void UnitClass::AI(void)
 	**	If this is a vehicle that heals itself (e.g., Mammoth Tank), then it will perform
 	**	the heal logic here.
 	*/
-	if (*this == UNIT_HTANK && (Frame % 16) == 0 && Health_Ratio() < 0x0080) {
+	if (this->IsSelfHealing && (Frame % 16) == 0 && Health_Ratio() < 0x0080) {
 		Strength++;
 		Mark(MARK_CHANGE);
 	}
+	/*if (*this == UNIT_HTANK && (Frame % 16) == 0 && Health_Ratio() < 0x0080) {
+		Strength++;
+		Mark(MARK_CHANGE);
+	}*/
 	if (*this == UNIT_VICE && Map[Coord_Cell(Coord)].Land_Type() == LAND_TIBERIUM && Health_Ratio() < 0x0100 && (Frame % 16) == 0) {
 		Strength++;
 		Mark(MARK_CHANGE);
@@ -1152,6 +1156,7 @@ UnitClass::UnitClass(UnitType classid, HousesType house) :
 	Reload = 0;
 	Ammo = Class->MaxAmmo;
 	IsCloakable = Class->IsCloakable;
+	IsSelfHealing = Class->IsSelfHealing;
 	if (Class->IsAnimating) Set_Rate(Options.Normalize_Delay(3));
 
 	/*

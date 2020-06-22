@@ -226,7 +226,7 @@ static BuildingTypeClass const ClassEye(
 	TXT_EYE,									// NAME:			Short name of the structure.
 	"EYE",									// NAME:			Short name of the structure.
 	XYP_COORD(0,0),						// Exit point for produced units.
-	7,								// Build level.
+	1,								// Build level.
 	STRUCTF_RADAR,				// Building prerequisite.
 		false,		// Has ability to detect adjacent cloaked objects?
 		true,			// Animation rate is regulated for constant speed?
@@ -253,8 +253,8 @@ static BuildingTypeClass const ClassEye(
 	(DirType)160,							// Starting idle frame to match construction.
 	500,										// STRNTH:		Full strength of building.
 	10,										// SIGHTRANGE:	Range of sighting.
-	2800,										// COST:			Cost to purchase.
-	13,										// SCENARIO:	Starting availability scenario.
+	2500,										// COST:			Cost to purchase.
+	1,										// SCENARIO:	Starting availability scenario.
 	0,100,									// RISK/RWRD:	Risk/reward rating values.
 	HOUSEF_MULTI1|
 	HOUSEF_MULTI2|
@@ -269,7 +269,7 @@ static BuildingTypeClass const ClassEye(
 	0,											// CANENTER:	Units that can enter building.
 	0,											// CAPACITY:	Spice storage capacity.
 	0,											// POWER:		Power points required.
-	200,										// DRAIN:		Power points required.
+	100,										// DRAIN:		Power points required.
 	BSIZE_22, 								// SIZE:			Building size.
 	NULL,										// Preferred exit cell list.
 	(short const *)ComList,		// OCCUPYLIST:	List of active foundation squares.
@@ -281,7 +281,7 @@ static BuildingTypeClass const ClassWeapon(
 	TXT_WEAPON_FACTORY,					// NAME:			Short name of the structure.
 	"WEAP",									// NAME:			Short name of the structure.
 	XYP_COORD(10+(CELL_PIXEL_W/2), ((CELL_PIXEL_H*3)-(CELL_PIXEL_H/2))-21),			// Exit point for produced units.
-	2,								// Build level.
+	1,								// Build level.
 	STRUCTF_REFINERY,			// Building prerequisite.
 		false,		// Has ability to detect adjacent cloaked objects?
 		false,		// Animation rate is regulated for constant speed?
@@ -313,7 +313,7 @@ static BuildingTypeClass const ClassWeapon(
 #endif
 	3,											// SIGHTRANGE:	Range of sighting.
 	2000,										// COST:			Cost to purchase.
-	5,											// SCENARIO:	Starting availability scenario.
+	1,											// SCENARIO:	Starting availability scenario.
 	0,86,										// RISK/RWRD:	Risk/reward rating values.
 	HOUSEF_MULTI1|
 	HOUSEF_MULTI2|
@@ -340,7 +340,7 @@ static BuildingTypeClass const ClassGTower(
 	TXT_GUARD_TOWER,						// NAME:			Short name of the structure.
 	"GTWR",									// NAME:			Short name of the structure.
 	XYP_COORD(0,0),						// Exit point for produced units.
-	2,								// Build level.
+	1,								// Build level.
 	STRUCTF_BARRACKS,			// Building prerequisite.
 		true,			// Has ability to detect adjacent cloaked objects?
 		false,		// Animation rate is regulated for constant speed?
@@ -368,7 +368,7 @@ static BuildingTypeClass const ClassGTower(
 	200,										// STRNTH:		Full strength of building.
 	3,											// SIGHTRANGE:	Range of sighting.
 	500,										// COST:			Cost to purchase.
-	7,											// SCENARIO:	Starting availability scenario.
+	1,											// SCENARIO:	Starting availability scenario.
 	100,25,									// RISK/RWRD:	Risk/reward rating values.
 	HOUSEF_MULTI1|
 	HOUSEF_MULTI2|
@@ -384,7 +384,7 @@ static BuildingTypeClass const ClassGTower(
 	0,											// CANENTER:	Units that can enter building.
 	0,											// CAPACITY:	Spice storage capacity.
 	00,										// POWER:		Power points required.
-	10,										// DRAIN:		Power points required.
+	0,										// DRAIN:		Power points required.
 	BSIZE_11, 								// SIZE:			Building size.
 	NULL,										// Preferred exit cell list.
 	(short const *)List1,			// OCCUPYLIST:	List of active foundation squares.
@@ -396,7 +396,7 @@ static BuildingTypeClass const ClassATower(
 	TXT_AGUARD_TOWER,						// NAME:			Short name of the structure.
 	"ATWR",									// NAME:			Short name of the structure.
 	XYP_COORD(0,0),						// Exit point for produced units.
-	4,								// Build level.
+	1,								// Build level.
 	STRUCTF_RADAR,				// Building prerequisite.
 		true,			// Has ability to detect adjacent cloaked objects?
 		false,		// Animation rate is regulated for constant speed?
@@ -421,10 +421,10 @@ static BuildingTypeClass const ClassATower(
 		false,		// Does building care less if placed on concrete?
 	RTTI_NONE,								// The object type produced at this factory.
 	DIR_N,									// Starting idle frame to match construction.
-	300,										// STRNTH:		Full strength of building.
+	400,										// STRNTH:		Full strength of building.
 	4,											// SIGHTRANGE:	Range of sighting.
 	1000,										// COST:			Cost to purchase.
-	13,										// SCENARIO:	Starting availability scenario.
+	1,										// SCENARIO:	Starting availability scenario.
 	100,30,									// RISK/RWRD:	Risk/reward rating values.
 	HOUSEF_MULTI1|
 	HOUSEF_MULTI2|
@@ -668,7 +668,7 @@ static BuildingTypeClass const ClassRefinery(
 	WEAPON_NONE,WEAPON_NONE,
 	ARMOR_WOOD,								// ARMOR:		Armor type
 	0,											// CANENTER:	Units that can enter building.
-	1000,										// CAPACITY:	Spice storage capacity.
+	10000,										// CAPACITY:	Spice storage capacity.
 	10,										// POWER:		Power points required.
 	40,										// DRAIN:		Power points required.
 	BSIZE_33, 								// SIZE:			Building size.
@@ -725,7 +725,7 @@ static BuildingTypeClass const ClassStorage(
 	WEAPON_NONE,WEAPON_NONE,
 	ARMOR_WOOD,								// ARMOR:		Armor type
 	0,											// CANENTER:	Units that can enter building.
-	1500,										// CAPACITY:	Spice storage capacity.
+	10000,										// CAPACITY:	Spice storage capacity.
 	0,											// POWER:		Power points required.
 	10,										// DRAIN:		Power points required.
 	BSIZE_21, 								// SIZE:			Building size.
@@ -739,7 +739,7 @@ static BuildingTypeClass const ClassHelipad(
 	TXT_HELIPAD,							// NAME:			Short name of the structure.
 	"HPAD",									// NAME:			Short name of the structure.
 	XYP_COORD(0,0),						// Exit point for produced units.
-	6,								// Build level.
+	1,								// Build level.
 	STRUCTF_BARRACKS,			// Building prerequisite.
 		false,		// Has ability to detect adjacent cloaked objects?
 		false,		// Animation rate is regulated for constant speed?
@@ -767,7 +767,7 @@ static BuildingTypeClass const ClassHelipad(
 	400,										// STRNTH:		Full strength of building.
 	3,											// SIGHTRANGE:	Range of sighting.
 	1500,										// COST:			Cost to purchase.
-	10,										// SCENARIO:	Starting availability scenario.
+	1,										// SCENARIO:	Starting availability scenario.
 	0,65,										// RISK/RWRD:	Risk/reward rating values.
 	HOUSEF_MULTI1|
 	HOUSEF_MULTI2|
@@ -795,7 +795,7 @@ static BuildingTypeClass const ClassCommand(
 	TXT_COMMAND,							// NAME:			Short name of the structure.
 	"HQ",										// NAME:			Short name of the structure.
 	XYP_COORD(0,0),						// Exit point for produced units.
-	2,								// Build level.
+	1,								// Build level.
 	STRUCTF_REFINERY,			// Building prerequisite.
 		true,			// Has ability to detect adjacent cloaked objects?
 		true,			// Animation rate is regulated for constant speed?
@@ -823,7 +823,7 @@ static BuildingTypeClass const ClassCommand(
 	500,										// STRNTH:		Full strength of building.
 	10,										// SIGHTRANGE:	Range of sighting.
 	1000,										// COST:			Cost to purchase.
-	3,											// SCENARIO:	Starting availability scenario.
+	1,											// SCENARIO:	Starting availability scenario.
 	0,20, 									// RISK/RWRD:	Risk/reward rating values.
 	HOUSEF_MULTI1|
 	HOUSEF_MULTI2|

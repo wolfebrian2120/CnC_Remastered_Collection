@@ -284,7 +284,7 @@ static UnitTypeClass const UnitMTank(
 	TXT_MTANK,								// NAME:			Text name of this unit type.
 	"MTNK",									// NAME:			Text name of this unit type.
 	ANIM_FRAG2,							// EXPLOSION:	Type of explosion when destroyed.
-	3,								// Build level.
+	1,								// Build level.
 	STRUCTF_NONE,				// Building prerequisite.
 		true,				// Can this be a goodie surprise from a crate?
 		true,				// Is a leader type?
@@ -304,6 +304,7 @@ static UnitTypeClass const UnitMTank(
 		true,				// Can it be repaired in a repair facility?
 		true,				// Can the player construct or order this unit?
 		true,				// Is there a crew inside?
+		true,				// Is Self Healing
 		false,			// Does it have a rotating radar dish?
 		false,			// Is there an associated firing animation?
 		false,			// Must the turret be in a locked down position while moving?
@@ -313,10 +314,10 @@ static UnitTypeClass const UnitMTank(
 		false,			// Is the unit capable of cloaking?
 		false,			// Does the unit have a constant animation?
 	-1,										// AMMO:			Number of shots it has (default).
-	400,										// STRENGTH:	Strength (in damage points).
-	3,											// SIGHTRANGE:	Range of sighting.
-	800,										// COST:			Cost to build (Credits).
-	7,											// SCENARIO:	Starting availability scenario.
+	700,										// STRENGTH:	Strength (in damage points).
+	6,											// SIGHTRANGE:	Range of sighting.
+	700,										// COST:			Cost to build (Credits).
+	1,											// SCENARIO:	Starting availability scenario.
 	80,62,									// RISK/RWRD:	Risk/reward rating values.
 	HOUSEF_MULTI1|
 	HOUSEF_MULTI2|
@@ -341,7 +342,7 @@ static UnitTypeClass const UnitHTank(
 	TXT_HTANK,								// NAME:			Text name of this unit type.
 	"HTNK",									// NAME:			Text name of this unit type.
 	ANIM_ART_EXP1,							// EXPLOSION:	Type of explosion when destroyed.
-	5,								// Build level.
+	1,								// Build level.
 	STRUCTF_REPAIR,			// Building prerequisite.
 		true,				// Can this be a goodie surprise from a crate?
 		true,				// Is a leader type?
@@ -361,6 +362,7 @@ static UnitTypeClass const UnitHTank(
 		true,				// Can it be repaired in a repair facility?
 		true,				// Can the player construct or order this unit?
 		true,				// Is there a crew inside?
+		true,				// Is Self Healing
 		false,			// Does it have a rotating radar dish?
 		false,			// Is there an associated firing animation?
 		false,			// Must the turret be in a locked down position while moving?
@@ -370,10 +372,10 @@ static UnitTypeClass const UnitHTank(
 		false,			// Is the unit capable of cloaking?
 		false,			// Does the unit have a constant animation?
 	-1,										// AMMO:			Number of shots it has (default).
-	600,										// STRENGTH:	Strength (in damage points).
-	4,											// SIGHTRANGE:	Range of sighting.
+	1000,										// STRENGTH:	Strength (in damage points).
+	8,											// SIGHTRANGE:	Range of sighting.
 	1500,										// COST:			Cost to build (Credits).
-	13,										// SCENARIO:	Starting availability scenario.
+	1,										// SCENARIO:	Starting availability scenario.
 	80,80, 									// RISK/RWRD:	Risk/reward rating values.
 	HOUSEF_MULTI1|
 	HOUSEF_MULTI2|
@@ -398,7 +400,7 @@ static UnitTypeClass const UnitMHQ(
 	TXT_MHQ,									// NAME:			Text name of this unit type.
 	"MHQ",									// NAME:			Text name of this unit type.
 	ANIM_FRAG2,							// EXPLOSION:	Type of explosion when destroyed.
-	99,							// Build level.
+	1,							// Build level.
 	STRUCTF_NONE,				// Building prerequisite.
 		false,			// Can this be a goodie surprise from a crate?
 		false,			// Is a leader type?
@@ -430,7 +432,7 @@ static UnitTypeClass const UnitMHQ(
 	110,										// STRENGTH:	Strength (in damage points).
 	5,											// SIGHTRANGE:	Range of sighting.
 	600,										// COST:			Cost to build (Credits).
-	99,										// SCENARIO:	Starting availability scenario.
+	1,										// SCENARIO:	Starting availability scenario.
 	80,100,									// RISK/RWRD:	Risk/reward rating values.
 	HOUSEF_MULTI1|
 	HOUSEF_MULTI2|
@@ -650,6 +652,7 @@ static UnitTypeClass const UnitHarvester(
 		true,				// Can it be repaired in a repair facility?
 		true,				// Can the player construct or order this unit?
 		true,				// Is there a crew inside?
+		true,				// Is Self Healing
 		false,			// Does it have a rotating radar dish?
 		false,			// Is there an associated firing animation?
 		false,			// Must the turret be in a locked down position while moving?
@@ -747,7 +750,7 @@ static UnitTypeClass const UnitJeep(
 	TXT_JEEP,								// NAME:			Text name of this unit type.
 	"JEEP",									// NAME:			Text name of this unit type.
 	ANIM_FRAG1,							// EXPLOSION:	Type of explosion when destroyed.
-	2,								// Build level.
+	1,								// Build level.
 	STRUCTF_NONE,				// Building prerequisite.
 		true,				// Can this be a goodie surprise from a crate?
 		true,				// Is a leader type?
@@ -767,6 +770,7 @@ static UnitTypeClass const UnitJeep(
 		true,				// Can it be repaired in a repair facility?
 		true,				// Can the player construct or order this unit?
 		true,				// Is there a crew inside?
+	    true,				// Is Self Healing
 		false,			// Does it have a rotating radar dish?
 		false,			// Is there an associated firing animation?
 		false,			// Must the turret be in a locked down position while moving?
@@ -776,10 +780,10 @@ static UnitTypeClass const UnitJeep(
 		false,			// Is the unit capable of cloaking?
 		false,			// Does the unit have a constant animation?
 	-1,										// AMMO:			Number of shots it has (default).
-	150,										// STRENGTH:	Strength (in damage points).
-	2,											// SIGHTRANGE:	Range of sighting.
+	400,										// STRENGTH:	Strength (in damage points).
+	5,											// SIGHTRANGE:	Range of sighting.
 	400,										// COST:			Cost to build (Credits).
-	5,											// SCENARIO:	Starting availability scenario.
+	1,											// SCENARIO:	Starting availability scenario.
 	80,41,	 								// RISK/RWRD:	Risk/reward rating values.
 	HOUSEF_MULTI1|
 	HOUSEF_MULTI2|
@@ -922,7 +926,7 @@ static UnitTypeClass const UnitMLRS(
 	TXT_MLRS,								// NAME:			Text name of this unit type.
 	"MSAM",									// NAME:			Text name of this unit type.
 	ANIM_ART_EXP1,							// EXPLOSION:	Type of explosion when destroyed.
-	7,								// Build level.
+	1,								// Build level.
 	STRUCTF_EYE,				// Building prerequisite.
 		true,				// Can this be a goodie surprise from a crate?
 		true,				// Is a leader type?
@@ -942,6 +946,7 @@ static UnitTypeClass const UnitMLRS(
 		true,				// Can it be repaired in a repair facility?
 		true,				// Can the player construct or order this unit?
 		true,				// Is there a crew inside?
+		true,				// Is Self Healing
 		false,			// Does it have a rotating radar dish?
 		false,			// Is there an associated firing animation?
 		true,				// Must the turret be in a locked down position while moving?
@@ -954,7 +959,7 @@ static UnitTypeClass const UnitMLRS(
 	100,										// STRENGTH:	Strength (in damage points).
 	4,											// SIGHTRANGE:	Range of sighting.
 	800,										// COST:			Cost to build (Credits).
-	11,										// SCENARIO:	Starting availability scenario.
+	1,										// SCENARIO:	Starting availability scenario.
 	80,72, 									// RISK/RWRD:	Risk/reward rating values.
 	HOUSEF_MULTI1|
 	HOUSEF_MULTI2|
@@ -980,7 +985,7 @@ static UnitTypeClass const UnitAPC(
 	TXT_APC,									// NAME:			Text name of this unit type.
 	"APC",									// NAME:			Text name of this unit type.
 	ANIM_FRAG2,							// EXPLOSION:	Type of explosion when destroyed.
-	4,								// Build level.
+	1,								// Build level.
 	STRUCTF_BARRACKS,			// Building prerequisite.
 		true,				// Can this be a goodie surprise from a crate?
 		true,				// Is a leader type?
@@ -1000,6 +1005,7 @@ static UnitTypeClass const UnitAPC(
 		true,				// Can it be repaired in a repair facility?
 		true,				// Can the player construct or order this unit?
 		false,			// Is there a crew inside?
+		true,			// Is Self Healing
 		false,			// Does it have a rotating radar dish?
 		false,			// Is there an associated firing animation?
 		false,			// Must the turret be in a locked down position while moving?
@@ -1009,10 +1015,10 @@ static UnitTypeClass const UnitAPC(
 		false,			// Is the unit capable of cloaking?
 		false,			// Does the unit have a constant animation?
 	-1,										// AMMO:			Number of shots it has (default).
-	200,										// STRENGTH:	Strength (in damage points).
+	500,										// STRENGTH:	Strength (in damage points).
 	4,											// SIGHTRANGE:	Range of sighting.
 	700,										// COST:			Cost to build (Credits).
-	5,											// SCENARIO:	Starting availability scenario.
+	1,											// SCENARIO:	Starting availability scenario.
 	80,15,									// RISK/RWRD:	Risk/reward rating values.
 	HOUSEF_MULTI1|
 	HOUSEF_MULTI2|
@@ -1023,7 +1029,7 @@ static UnitTypeClass const UnitAPC(
 	HOUSEF_BAD|
 	HOUSEF_JP|
 	HOUSEF_GOOD,							// OWNABLE:		Ownable by house (bit field).
-	WEAPON_M60MG,WEAPON_NONE,
+	WEAPON_OBELISK_LASER,WEAPON_NONE,
 	ARMOR_STEEL,							// ARMOR:		Armor type
 	SPEED_TRACK,							// MOVE:			Locomotion type.
 	MPH_MEDIUM_FASTER,					// SPEED:		Miles per hour.
@@ -1067,7 +1073,7 @@ static UnitTypeClass const UnitGunBoat(
 		false,			// Is the unit capable of cloaking?
 		false,			// Does the unit have a constant animation?
 	-1,										// AMMO:			Number of shots it has (default).
-	700,										// STRENGTH:	Strength (in damage points).
+	2000,										// STRENGTH:	Strength (in damage points).
 	5,											// SIGHTRANGE:	Range of sighting.
 	300,										// COST:			Cost to build (Credits).
 	99,										// SCENARIO:	Starting availability scenario.
@@ -1501,6 +1507,111 @@ UnitTypeClass::UnitTypeClass(UnitType type,
 	Speed = speed;
 	TurretOffset = toffset;
 	Type = type;
+	IsSelfHealing = false;
+	 
+}
+
+UnitTypeClass::UnitTypeClass(UnitType type,
+				int name,
+				char const* ininame,
+				AnimType exp,
+				unsigned char level,
+				long pre,
+				bool is_goodie,
+				bool is_leader,
+				bool is_eight,
+				bool is_nominal,
+				bool is_transporter,
+				bool is_crushable,
+				bool is_crusher,
+				bool is_harvest,
+				bool is_stealthy,
+				bool is_selectable,
+				bool is_legal_target,
+				bool is_insignificant,
+				bool is_immune,
+				bool is_turret_equipped,
+				bool is_twoshooter,
+				bool is_repairable,
+				bool is_buildable,
+				bool is_crew,
+				bool is_selfhealing,
+				bool is_radar_equipped,
+				bool is_fire_anim,
+				bool is_lock_turret,
+				bool is_tracked,
+				bool is_gigundo,
+				bool is_chunky,
+				bool is_cloakable,
+				bool is_animating,
+				int ammo,
+				unsigned short strength,
+				int sightrange,
+				int cost,
+				int scenario,
+				int risk,
+				int reward,
+				int ownable,
+				WeaponType primary, WeaponType secondary,
+				ArmorType armor,
+				SpeedType speed,
+				MPHType maxSpeed,
+				unsigned rot,
+				int toffset,
+				MissionType order) :
+					TechnoTypeClass(name,
+						ininame,
+						level,
+						pre,
+						is_leader,
+						false,
+						is_nominal,
+						is_transporter,
+						false,
+						is_crushable,
+						is_stealthy,
+						is_selectable,
+						is_legal_target,
+						is_insignificant,
+						is_immune,
+						false,
+						is_twoshooter,
+						is_turret_equipped,
+						is_repairable,
+						is_buildable,
+						is_crew,
+						true,
+						ammo,
+						strength,
+						maxSpeed,
+						sightrange,
+						cost,
+						scenario,
+						risk,
+						reward,
+						ownable,
+						primary, secondary,
+						armor)
+{
+	Explosion = exp;
+	IsCrateGoodie = is_goodie;
+	IsPieceOfEight = is_eight;
+	IsCloakable = is_cloakable;
+	IsChunkyShape = is_chunky;
+	IsCrusher = is_crusher;
+	IsFireAnim = is_fire_anim;
+	IsGigundo = is_gigundo;
+	IsLockTurret = is_lock_turret;
+	IsRadarEquipped = is_radar_equipped;
+	IsToHarvest = is_harvest;
+	IsTracked = is_tracked;
+	IsAnimating = is_animating;
+	Mission = order;
+	ROT = rot;
+	Speed = speed;
+	TurretOffset = toffset;
+	Type = type;
+	IsSelfHealing = is_selfhealing;
 }
 
 
