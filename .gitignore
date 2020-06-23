@@ -1,4 +1,4 @@
-
+*.suo
 *.ipch
 *.db-wal
 *.db-shm
