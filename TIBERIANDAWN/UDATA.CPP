@@ -1456,38 +1456,40 @@ UnitTypeClass::UnitTypeClass(UnitType type,
 				unsigned rot,
 				int toffset,
 				MissionType order) :
-					TechnoTypeClass(name,
-										ininame,
-										level,
-										pre,
-										is_leader,
-										false,
-										is_nominal,
-										is_transporter,
-										false,
-										is_crushable,
-										is_stealthy,
-										is_selectable,
-										is_legal_target,
-										is_insignificant,
-										is_immune,
-										false,
-										is_twoshooter,
-										is_turret_equipped,
-										is_repairable,
-										is_buildable,
-										is_crew,
-										ammo,
-										strength,
-										maxSpeed,
-										sightrange,
-										cost,
-										scenario,
-										risk,
-										reward,
-										ownable,
-										primary,secondary,
-										armor)
+					TechnoTypeClass(
+						name,				//name
+						ininame,			//ininame
+						level,				//level
+						pre,				//pre
+						is_leader,			//is_leader
+						false,				//is_scanner
+						is_nominal,			//is_nominal
+						is_transporter,		//is_transporter
+						false,				//is_flammable
+						is_crushable,		//is_crushable
+						is_stealthy,		//is_stealthy
+						is_selectable,		//is_selectable
+						is_legal_target,	//is_legal_target
+						is_insignificant,	//is_insignificant
+						is_immune,			//is_immune
+						false,				//is_theater
+						is_twoshooter,		//is_twoshooter
+						is_turret_equipped,	//is_turret_equipped
+						is_repairable,		//is_repairable
+						is_buildable,		//is_buildable
+						is_crew,			//is_crew
+						ammo,				//ammo
+						strength,			//strength
+						maxSpeed,			//maxSpeed
+						sightrange,			//sightrange
+						cost,				//cost
+						scenario,			//scenario
+						risk,				//risk
+						reward,				//reward
+						ownable,			//ownable
+						primary,			//primary
+						secondary,			//secondary
+						armor)				//armor
 {
 	Explosion = exp;
 	IsCrateGoodie = is_goodie;
@@ -1559,39 +1561,41 @@ UnitTypeClass::UnitTypeClass(UnitType type,
 				unsigned rot,
 				int toffset,
 				MissionType order) :
-					TechnoTypeClass(name,
-						ininame,
-						level,
-						pre,
-						is_leader,
-						false,
-						is_nominal,
-						is_transporter,
-						false,
-						is_crushable,
-						is_stealthy,
-						is_selectable,
-						is_legal_target,
-						is_insignificant,
-						is_immune,
-						false,
-						is_twoshooter,
-						is_turret_equipped,
-						is_repairable,
-						is_buildable,
-						is_crew,
-						true,
-						ammo,
-						strength,
-						maxSpeed,
-						sightrange,
-						cost,
-						scenario,
-						risk,
-						reward,
-						ownable,
-						primary, secondary,
-						armor)
+					TechnoTypeClass(
+						name,				//name
+						ininame,			//ininame
+						level,				//level
+						pre,				//pre
+						is_leader,			//is_leader
+						false,				//is_scanner
+						is_nominal,			//is_nominal
+						is_transporter,		//is_transporter
+						false,				//is_flammable
+						is_crushable,		//is_crushable
+						is_stealthy,		//is_stealthy
+						is_selectable,		//is_selectable
+						is_legal_target,	//is_legal_target
+						is_insignificant,	//is_insignificant
+						is_immune,			//is_immune
+						false,				//is_theater
+						is_twoshooter,		//is_twoshooter
+						is_turret_equipped,	//is_turret_equipped
+						is_repairable,		//is_repairable
+						is_buildable,		//is_buildable
+						is_crew,			//is_crew
+						true,				//is_selfhealing
+						ammo,				//ammo
+						strength,			//strength
+						maxSpeed,			//maxSpeed
+						sightrange,			//sightrange
+						cost,				//cost
+						scenario,			//scenario
+						risk,				//risk
+						reward,				//reward
+						ownable,			//ownable
+						primary,			//primary
+						secondary,			//secondary
+						armor)				//armor
 {
 	Explosion = exp;
 	IsCrateGoodie = is_goodie;

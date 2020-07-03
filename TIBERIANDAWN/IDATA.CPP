@@ -196,7 +196,7 @@ static InfantryTypeClass const E2(
 	14,							// Frame of projectile launch.
 	6,								// Frame of projectile launch while prone.
 	100,							// Strength of infantry (in damage points).
-	1,								// Sight range.
+	5,								// Sight range.
 	160,							// Cost of infantry (in credits).
 	3,								// Scenario when they first appear.
 	80,10,						// Risk/Reward of this infantry unit.
@@ -579,7 +579,7 @@ static InfantryTypeClass const Commando(
 	&CommandoDos[0][0],		// ptr to DO table
 	2,								// Frame of projectile launch.
 	2,								// Frame of projectile launch while prone.
-	80,							// Strength of infantry (in damage points).
+	200,							// Strength of infantry (in damage points).
 	7,								// Sight range.
 	500,							// Cost of infantry (in credits).
 	1,							// Scenario when they first appear.
@@ -1635,14 +1635,41 @@ InfantryTypeClass::InfantryTypeClass	(
 						unsigned short strength, int sightrange,
 						int cost, int scenario, int risk, int reward, int ownable,
 						WeaponType primary, WeaponType secondary,
-						MPHType maxspeed)
-	: TechnoTypeClass(name, ininame, level, pre,
-							is_leader, true, is_nominal, false, false, true, true, true, true, false, false,
-							is_theater, false, false, false, true, false,
-							ammo, strength, maxspeed, sightrange, cost,
-							scenario, risk, reward, ownable,
-							primary, secondary,
-							ARMOR_NONE)
+						MPHType maxspeed) : 
+	TechnoTypeClass(
+		name,				//name
+		ininame,			//ininame
+		level,				//level
+		pre,				//pre
+		is_leader,			//isLeader
+		true,				//is_scanner
+		is_nominal,			//is_nominal
+		false,				//is_transporter
+		false,				//is_flammable
+		true,				//is_crushable
+		true,				//is_stealthy
+		true,				//is_selectable
+		true,				//is_legal_target
+		false,				//is_insignificant
+		false,				//is_immune
+		is_theater,			//is_theater
+		false,				//is_twoshooter
+		false,				//is_turret_equipped
+		false,				//is_repairable
+		true,				//is_buildable
+		false,				//is_crew
+		ammo,				//ammo
+		strength,			//strength
+		maxspeed,			//maxspeed MPHType
+		sightrange,			//sightrange
+		cost,				//cost
+		scenario,			//scenario
+		risk,				//risk
+		reward,				//reward
+		ownable,			//ownable
+		primary,			//primary weapon type
+		secondary,			//secondary weapon type
+		ARMOR_NONE)			//armor type
 {
 	IsFemale = is_female;
 	IsCrawling = is_crawling;
@@ -1822,14 +1849,42 @@ InfantryTypeClass::InfantryTypeClass(
 	unsigned short strength, int sightrange,
 	int cost, int scenario, int risk, int reward, int ownable,
 	WeaponType primary, WeaponType secondary,
-	MPHType maxspeed)
-	: TechnoTypeClass(name, ininame, level, pre,
-		is_leader, true, is_nominal, false, false, true, true, true, true, false, false,
-		is_theater, false, false, false, true, false, true,
-		ammo, strength, maxspeed, sightrange, cost,
-		scenario, risk, reward, ownable,
-		primary, secondary,
-		ARMOR_NONE)
+	MPHType maxspeed) : 
+	TechnoTypeClass(
+		name,				//name
+		ininame,			//ininame
+		level,				//level
+		pre,				//pre
+		is_leader,			//isLeader
+		true,				//is_scanner
+		is_nominal,			//is_nominal
+		false,				//is_transporter
+		false,				//is_flammable
+		true,				//is_crushable
+		true,				//is_stealthy
+		true,				//is_selectable
+		true,				//is_legal_target
+		false,				//is_insignificant
+		false,				//is_immune
+		is_theater,			//is_theater
+		false,				//is_twoshooter
+		false,				//is_turret_equipped
+		false,				//is_repairable
+		true,				//is_buildable
+		false,				//is_crew
+		true,				//is_selfhealing
+		ammo,				//ammo
+		strength,			//strength
+		maxspeed,			//maxspeed MPHType
+		sightrange,			//sightrange
+		cost,				//cost
+		scenario,			//scenario
+		risk,				//risk
+		reward,				//reward
+		ownable,			//ownable
+		primary,			//primary weapon type
+		secondary,			//secondary weapon type
+		ARMOR_NONE)			//armor type
 {
 	IsFemale = is_female;
 	IsCrawling = is_crawling;
