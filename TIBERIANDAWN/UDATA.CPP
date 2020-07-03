@@ -400,7 +400,7 @@ static UnitTypeClass const UnitMHQ(
 	TXT_MHQ,									// NAME:			Text name of this unit type.
 	"MHQ",									// NAME:			Text name of this unit type.
 	ANIM_FRAG2,							// EXPLOSION:	Type of explosion when destroyed.
-	1,							// Build level.
+	99,							// Build level.
 	STRUCTF_NONE,				// Building prerequisite.
 		false,			// Can this be a goodie surprise from a crate?
 		false,			// Is a leader type?
@@ -432,7 +432,7 @@ static UnitTypeClass const UnitMHQ(
 	110,										// STRENGTH:	Strength (in damage points).
 	5,											// SIGHTRANGE:	Range of sighting.
 	600,										// COST:			Cost to build (Credits).
-	1,										// SCENARIO:	Starting availability scenario.
+	99,										// SCENARIO:	Starting availability scenario.
 	80,100,									// RISK/RWRD:	Risk/reward rating values.
 	HOUSEF_MULTI1|
 	HOUSEF_MULTI2|
