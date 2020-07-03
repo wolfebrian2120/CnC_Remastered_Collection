@@ -384,6 +384,90 @@ AircraftTypeClass::AircraftTypeClass(
 	Type = airtype;
 	ROT = rot;
 	Mission = deforder;
+	IsSelfHealing = false;
+}
+
+AircraftTypeClass::AircraftTypeClass(
+	AircraftType airtype,
+	int name,
+	char const* ininame,
+	unsigned char level,
+	long pre,
+	bool is_leader,
+	bool is_twoshooter,
+	bool is_transporter,
+	bool is_fixedwing,
+	bool is_rotorequipped,
+	bool is_rotorcustom,
+	bool is_landable,
+	bool is_crushable,
+	bool is_stealthy,
+	bool is_selectable,
+	bool is_legal_target,
+	bool is_insignificant,
+	bool is_immune,
+	bool is_theater,
+	bool is_repairable,
+	bool is_buildable,
+	bool is_crew,
+	bool is_selfhealing,
+	int ammo,
+	unsigned short strength,
+	int sightrange,
+	int cost,
+	int scenario,
+	int risk,
+	int reward,
+	int ownable,
+	WeaponType primary,
+	WeaponType secondary,
+	ArmorType armor,
+	MPHType maxspeed,
+	int rot,
+	MissionType deforder) :
+		TechnoTypeClass(name,
+			ininame,
+			level,
+			pre,
+			is_leader,
+			false,
+			false,
+			is_transporter,
+			false,
+			is_crushable,
+			is_stealthy,
+			is_selectable,
+			is_legal_target,
+			is_insignificant,
+			is_immune,
+			is_theater,
+			is_twoshooter,
+			false,
+			is_repairable,
+			is_buildable,
+			is_crew,
+			true,
+			ammo,
+			strength,
+			maxspeed,
+			sightrange,
+			cost,
+			scenario,
+			risk,
+			reward,
+			ownable,
+			primary,
+			secondary,
+			armor)
+{
+	IsRotorEquipped = is_rotorequipped;
+	IsRotorCustom = is_rotorcustom;
+	IsLandable = is_landable;
+	IsFixedWing = is_fixedwing;
+	Type = airtype;
+	ROT = rot;
+	Mission = deforder;
+	IsSelfHealing = is_selfhealing;
 }
 
 

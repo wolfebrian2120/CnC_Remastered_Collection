@@ -72,6 +72,12 @@ class TechnoClass :	public RadioClass,
 		unsigned IsCloakable:1;
 
 		/*
+		**	If this object has inherited the ability to self heal, then this bit will
+		**	be set to true.
+		*/
+		unsigned IsSelfHealing : 1;
+
+		/*
 		**	If this object is designated as special then this flag will be true. For
 		**	buildings, this means that it is the primary factory. For units, it means
 		**	that the unit is the team leader.

@@ -75,6 +75,11 @@ class InfantryClass : public FootClass
 		unsigned IsTechnician:1;
 
 		/*
+		**	Is this object set to self heal.
+		*/
+		unsigned IsSelfHealing : 1;
+
+		/*
 		**	If the infantry just performed some feat, then it may respond with an action.
 		**	This flag will be true if an action is to be performed when the Comment timer
 		**	has expired.

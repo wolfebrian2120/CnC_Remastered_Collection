@@ -245,6 +245,7 @@ AircraftClass::AircraftClass(AircraftType classid, HousesType house) :
 	NavCom = TARGET_NONE;
 	SecondaryFacing = PrimaryFacing;
 	Jitter = 0;
+	IsSelfHealing = Class->IsSelfHealing;
 
 	/*
 	** Keep count of the number of units created. Dont track cargo planes as they are created
@@ -710,6 +711,16 @@ int AircraftClass::Mission_Hunt(void)
 void AircraftClass::AI(void)
 {
 	Validate();
+
+	/*
+	**	If this is a vehicle that heals itself (e.g., Mammoth Tank), then it will perform
+	**	the heal logic here.
+	*/
+	if (this->IsSelfHealing && (Frame % 16) == 0 && Health_Ratio() < 0x0080) {
+		Strength++;
+		Mark(MARK_CHANGE);
+	}
+
 	/*
 	**	A Mission change can always occur if the aircraft is landed or flying.
 	*/

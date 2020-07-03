@@ -258,6 +258,7 @@ InfantryClass::InfantryClass(InfantryType classid, HousesType house) :
 	IsBoxing = false;
 	IsTechnician = false;
 	Strength = Class->MaxStrength;
+	IsSelfHealing = Class->IsSelfHealing;
 
 	/*
 	**	Civilians carry much less ammo than soldiers do.
@@ -1035,6 +1036,15 @@ void InfantryClass::AI(void)
 	*/
 	if (IsFiring && !Fetch_Rate()) {
 		IsFiring = false;
+	}
+
+	/*
+	**	If this is a infantry unit that heals itself (e.g., Mammoth Tank), then it will perform
+	**	the heal logic here.
+	*/
+	if (this->IsSelfHealing && Strength < Class->MaxStrength && (Frame % 16) == 0) {// && (Frame % 16) == 0 && Health_Ratio() < 0x0080) {
+		Strength++;
+		Mark(MARK_CHANGE);
 	}
 
 	/*
