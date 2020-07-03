@@ -12,3 +12,4 @@
 *.res
 *.lib
 *.dll
+TIBERIANDAWN/Win32/Release/*
