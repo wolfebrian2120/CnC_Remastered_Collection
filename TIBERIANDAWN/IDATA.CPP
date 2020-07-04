@@ -270,11 +270,12 @@ static InfantryTypeClass const E3(
 	false,						// Is this a "fraidycat" run-away type infantry?
 	false,						// Can this infantry type capture a building?
 	false,						// Theater specific graphic image?
+	true,
 	-1,							// Number of shots it has (default).
 	&BazookaDos[0][0],		// Ptr to DO table (above)
 	3,								// Frame of projectile launch.
 	3,								// Frame of projectile launch while prone.
-	25,							// Strength of infantry (in damage points).
+	100,							// Strength of infantry (in damage points).
 	2,								// Sight range.
 	150,							// Cost of infantry (in credits).
 	3,								// Scenario when they first appear.
@@ -347,13 +348,14 @@ static InfantryTypeClass const E4(
 	false,						// Is this a "fraidycat" run-away type infantry?
 	false,						// Can this infantry type capture a building?
 	false,						// Theater specific graphic image?
+	true,						// Is Self Healing
 	-1,							// Number of shots it has (default).
 	&FlamethrowerDos[0][0],	// ptr to DO table (above)
 	2,								// Frame of projectile launch.
 	0,								// Frame of projectile launch while prone.
 	200,							// Strength of infantry (in damage points).
 	1,								// Sight range.
-	200,							// Cost of infantry (in credits).
+	50,							// Cost of infantry (in credits).
 	1,								// Scenario when they first appear.
 	80,10,						// Risk/Reward of this infantry unit.
 	HOUSEF_MULTI1|
@@ -414,7 +416,7 @@ static InfantryTypeClass const E5(
 	TXT_E5,						// Translate name number for infantry type.
 	"E5",							// INI name for infantry.
 	1,								// Build level.
-	STRUCTF_EYE,				// Building prerequisite.
+	STRUCTF_NONE,				// Building prerequisite.
 	false,						// Is this a female type?
 	true,							// Is a leader type?
 	true,							// Has crawling animation frames?
@@ -423,13 +425,14 @@ static InfantryTypeClass const E5(
 	false,						// Is this a "fraidycat" run-away type infantry?
 	false,						// Can this infantry type capture a building?
 	false,						// Theater specific graphic image?
+	true,						// Is Self Healing
 	-1,							// Number of shots it has (default).
 	&ChemwarriorDos[0][0],	// ptr to DO table
 	2,								// Frame of projectile launch.
 	0,								// Frame of projectile launch while prone.
 	200,							// Strength of infantry (in damage points).
 	1,								// Sight range.
-	300,							// Cost of infantry (in credits).
+	50,							// Cost of infantry (in credits).
 	1,							// Scenario when they first appear.
 	80,10,						// Risk/Reward of this infantry unit.
 	HOUSEF_MULTI1|
@@ -565,7 +568,7 @@ static InfantryTypeClass const Commando(
 	TXT_RAMBO,					// Translate name number for infantry type.
 	"RMBO",						// INI name for infantry.
 	1,								// Build level.
-	STRUCT_RADAR,				// Building prerequisite.
+	STRUCTF_RADAR,				// Building prerequisite.
 	false,						// Is this a female type?
 	true,							// Is a leader type?
 	true,							// Has crawling animation frames?
@@ -574,6 +577,7 @@ static InfantryTypeClass const Commando(
 	false,						// Is this a "fraidycat" run-away type infantry?
 	false,							// Can this infantry type capture a building?
 	false,						// Theater specific graphic image?
+	true,						// Is Self Healing
 	-1,							// Number of shots it has (default).
 	&CommandoDos[0][0],		// ptr to DO table
 	2,								// Frame of projectile launch.

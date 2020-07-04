@@ -597,7 +597,7 @@ static BuildingTypeClass const ClassConst(
 	DIR_N,									// Starting idle frame to match construction.
 	400,										// STRNTH:		Full strength of building.
 	3,											// SIGHTRANGE:	Range of sighting.
-	5000,										// COST:			Cost to purchase.
+	10000,										// COST:			Cost to purchase.
 	1,											// SCENARIO:	Starting availability scenario.
 	0,70,										// RISK/RWRD:	Risk/reward rating values.
 	HOUSEF_MULTI1|
@@ -739,8 +739,8 @@ static BuildingTypeClass const ClassHelipad(
 	TXT_HELIPAD,							// NAME:			Short name of the structure.
 	"HPAD",									// NAME:			Short name of the structure.
 	XYP_COORD(0,0),						// Exit point for produced units.
-	6,								// Build level.
-	STRUCTF_BARRACKS,			// Building prerequisite.
+	1,								// Build level.
+	STRUCTF_REFINERY,			// Building prerequisite.
 		false,		// Has ability to detect adjacent cloaked objects?
 		false,		// Animation rate is regulated for constant speed?
 		true,			// Requires a bib dirt patch?
@@ -767,7 +767,7 @@ static BuildingTypeClass const ClassHelipad(
 	400,										// STRNTH:		Full strength of building.
 	3,											// SIGHTRANGE:	Range of sighting.
 	1500,										// COST:			Cost to purchase.
-	10,										// SCENARIO:	Starting availability scenario.
+	1,										// SCENARIO:	Starting availability scenario.
 	0,65,										// RISK/RWRD:	Risk/reward rating values.
 	HOUSEF_MULTI1|
 	HOUSEF_MULTI2|

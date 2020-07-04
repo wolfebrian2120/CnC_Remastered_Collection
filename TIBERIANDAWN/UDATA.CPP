@@ -133,6 +133,7 @@ static UnitTypeClass const UnitFTank(
 		true,				// Can it be repaired in a repair facility?
 		true,				// Can the player construct or order this unit?
 		true,				// Is there a crew inside?
+		true,				//Is Self Healing
 		false,			// Does it have a rotating radar dish?
 		false,			// Is there an associated firing animation?
 		false,			// Must the turret be in a locked down position while moving?
@@ -190,6 +191,7 @@ static UnitTypeClass const UnitSTank(
 		true,				// Can it be repaired in a repair facility?
 		true,				// Can the player construct or order this unit?
 		true,				// Is there a crew inside?
+		true,				// Is Self Healing
 		false,			// Does it have a rotating radar dish?
 		false,			// Is there an associated firing animation?
 		false,			// Must the turret be in a locked down position while moving?
@@ -247,6 +249,7 @@ static UnitTypeClass const UnitLTank(
 		true,				// Can it be repaired in a repair facility?
 		true,				// Can the player construct or order this unit?
 		true,				// Is there a crew inside?
+		true,				// Is Self Healing
 		false,			// Does it have a rotating radar dish?
 		false,			// Is there an associated firing animation?
 		false,			// Must the turret be in a locked down position while moving?
@@ -651,6 +654,7 @@ static UnitTypeClass const UnitHarvester(
 		true,				// Can it be repaired in a repair facility?
 		true,				// Can the player construct or order this unit?
 		true,				// Is there a crew inside?
+		true,				// Is Self Healing
 		false,			// Does it have a rotating radar dish?
 		false,			// Is there an associated firing animation?
 		false,			// Must the turret be in a locked down position while moving?
@@ -825,6 +829,7 @@ static UnitTypeClass const UnitBuggy(
 		true,				// Can it be repaired in a repair facility?
 		true,				// Can the player construct or order this unit?
 		true,				// Is there a crew inside?
+		true,				// Is Self Healing
 		false,			// Does it have a rotating radar dish?
 		false,			// Is there an associated firing animation?
 		false,			// Must the turret be in a locked down position while moving?
