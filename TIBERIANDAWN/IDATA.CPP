@@ -572,7 +572,7 @@ static InfantryTypeClass const Commando(
 	false,						// Is this a civlian?
 	false,						// Always use the given name for the infantry?
 	false,						// Is this a "fraidycat" run-away type infantry?
-	true,							// Can this infantry type capture a building?
+	false,							// Can this infantry type capture a building?
 	false,						// Theater specific graphic image?
 	-1,							// Number of shots it has (default).
 	&CommandoDos[0][0],		// ptr to DO table
@@ -1634,23 +1634,52 @@ InfantryTypeClass::InfantryTypeClass	(
 						unsigned short strength, int sightrange,
 						int cost, int scenario, int risk, int reward, int ownable,
 						WeaponType primary, WeaponType secondary,
-						MPHType maxspeed)
-	: TechnoTypeClass(name, ininame, level, pre,
-							is_leader, true, is_nominal, false, false, true, true, true, true, false, false,
-							is_theater, false, false, false, true, false,
-							ammo, strength, maxspeed, sightrange, cost,
-							scenario, risk, reward, ownable,
-							primary, secondary,
-							ARMOR_NONE)
+	MPHType maxspeed) :
+	TechnoTypeClass(
+		name,				//name
+		ininame,			//ininame
+		level,				//level
+		pre,				//pre
+		is_leader,			//isLeader
+		true,				//is_scanner
+		is_nominal,			//is_nominal
+		false,				//is_transporter
+		false,				//is_flammable
+		true,				//is_crushable
+		true,				//is_stealthy
+		true,				//is_selectable
+		true,				//is_legal_target
+		false,				//is_insignificant
+		false,				//is_immune
+		is_theater,			//is_theater
+		false,				//is_twoshooter
+		false,				//is_turret_equipped
+		false,				//is_repairable
+		true,				//is_buildable
+		false,				//is_crew
+		ammo,				//ammo
+		strength,			//strength
+		maxspeed,			//maxspeed MPHType
+		sightrange,			//sightrange
+		cost,				//cost
+		scenario,			//scenario
+		risk,				//risk
+		reward,				//reward
+		ownable,			//ownable
+		primary,			//primary weapon type
+		secondary,			//secondary weapon type
+		ARMOR_NONE)			//armor type
 {
 	IsFemale = is_female;
 	IsCrawling = is_crawling;
 	IsCapture = is_capture;
 	IsFraidyCat = is_fraidycat;
 	IsCivilian = is_civilian;
+	IsAvoidingTiberium = false;
 	Type = type;
 	FireLaunch = firelaunch;
 	ProneLaunch = pronelaunch;
+	IsSelfHealing = false;
 
 	/*
 	**	Set the animation sequence custom values.
@@ -1801,6 +1830,219 @@ InfantryTypeClass::InfantryTypeClass	(
 #endif	//cuts
 }
 
+InfantryTypeClass::InfantryTypeClass(
+	InfantryType type, int name, char const* ininame,
+	unsigned char level, long pre,
+	bool is_female,
+	bool is_leader,
+	bool is_crawling,
+	bool is_civilian,
+	bool is_nominal,
+	bool is_fraidycat,
+	bool is_capture,
+	bool is_theater,
+	bool is_selfhealing,
+	int ammo,
+	int* do_table,
+	int firelaunch, int pronelaunch,
+	unsigned short strength, int sightrange,
+	int cost, int scenario, int risk, int reward, int ownable,
+	WeaponType primary, WeaponType secondary,
+	MPHType maxspeed) :
+	TechnoTypeClass(
+		name,				//name
+		ininame,			//ininame
+		level,				//level
+		pre,				//pre
+		is_leader,			//isLeader
+		true,				//is_scanner
+		is_nominal,			//is_nominal
+		false,				//is_transporter
+		false,				//is_flammable
+		true,				//is_crushable
+		true,				//is_stealthy
+		true,				//is_selectable
+		true,				//is_legal_target
+		false,				//is_insignificant
+		false,				//is_immune
+		is_theater,			//is_theater
+		false,				//is_twoshooter
+		false,				//is_turret_equipped
+		false,				//is_repairable
+		true,				//is_buildable
+		false,				//is_crew
+		true,				//is_selfhealing
+		ammo,				//ammo
+		strength,			//strength
+		maxspeed,			//maxspeed MPHType
+		sightrange,			//sightrange
+		cost,				//cost
+		scenario,			//scenario
+		risk,				//risk
+		reward,				//reward
+		ownable,			//ownable
+		primary,			//primary weapon type
+		secondary,			//secondary weapon type
+		ARMOR_NONE)			//armor type
+{
+	IsFemale = is_female;
+	IsCrawling = is_crawling;
+	IsCapture = is_capture;
+	IsFraidyCat = is_fraidycat;
+	IsCivilian = is_civilian;
+	Type = type;
+	FireLaunch = firelaunch;
+	ProneLaunch = pronelaunch;
+	IsSelfHealing = is_selfhealing;
+
+	/*
+	**	Set the animation sequence custom values.
+	*/
+
+	for (int i = 0; i < DO_COUNT; i++) {
+		DoControls[i].Frame = *do_table++;
+		DoControls[i].Count = *do_table++;
+		DoControls[i].Jump = *do_table++;
+	}
+
+#ifdef cuts		//ST - 10/3/95 10:09AM
+	DoControls[DO_STAND_READY].Frame = dostandready;
+	DoControls[DO_STAND_READY].Count = dostandreadyframe;
+	DoControls[DO_STAND_READY].Jump = dostandreadyjump;
+
+	DoControls[DO_STAND_GUARD].Frame = dostandguard;
+	DoControls[DO_STAND_GUARD].Count = dostandguardframe;
+	DoControls[DO_STAND_GUARD].Jump = dostandguardjump;
+
+	DoControls[DO_PRONE].Frame = doprone;
+	DoControls[DO_PRONE].Count = doproneframe;
+	DoControls[DO_PRONE].Jump = dopronejump;
+
+	DoControls[DO_WALK].Frame = dowalk;
+	DoControls[DO_WALK].Count = dowalkframe;
+	DoControls[DO_WALK].Jump = dowalkjump;
+
+	DoControls[DO_FIRE_WEAPON].Frame = dofireweapon;
+	DoControls[DO_FIRE_WEAPON].Count = dofireweaponframe;
+	DoControls[DO_FIRE_WEAPON].Jump = dofireweaponjump;
+
+	DoControls[DO_LIE_DOWN].Frame = doliedown;
+	DoControls[DO_LIE_DOWN].Count = doliedownframe;
+	DoControls[DO_LIE_DOWN].Jump = doliedownjump;
+
+	DoControls[DO_CRAWL].Frame = docrawl;
+	DoControls[DO_CRAWL].Count = docrawlframe;
+	DoControls[DO_CRAWL].Jump = docrawljump;
+
+	DoControls[DO_GET_UP].Frame = dogetup;
+	DoControls[DO_GET_UP].Count = dogetupframe;
+	DoControls[DO_GET_UP].Jump = dogetupjump;
+
+	DoControls[DO_FIRE_PRONE].Frame = dofireprone;
+	DoControls[DO_FIRE_PRONE].Count = dofireproneframe;
+	DoControls[DO_FIRE_PRONE].Jump = dofirepronejump;
+
+	DoControls[DO_IDLE1].Frame = doidle1;
+	DoControls[DO_IDLE1].Count = doidle1frame;
+	DoControls[DO_IDLE1].Jump = doidle1jump;
+
+	DoControls[DO_IDLE2].Frame = doidle2;
+	DoControls[DO_IDLE2].Count = doidle2frame;
+	DoControls[DO_IDLE2].Jump = doidle2jump;
+
+	DoControls[DO_ON_GUARD].Frame = doonguard;
+	DoControls[DO_ON_GUARD].Count = doonguardframe;
+	DoControls[DO_ON_GUARD].Jump = doonguardjump;
+
+	DoControls[DO_FIGHT_READY].Frame = dofightready;
+	DoControls[DO_FIGHT_READY].Count = dofightreadyframe;
+	DoControls[DO_FIGHT_READY].Jump = dofightreadyjump;
+
+	DoControls[DO_PUNCH].Frame = dopunch;
+	DoControls[DO_PUNCH].Count = dopunchframe;
+	DoControls[DO_PUNCH].Jump = dopunchjump;
+
+	DoControls[DO_KICK].Frame = dokick;
+	DoControls[DO_KICK].Count = dokickframe;
+	DoControls[DO_KICK].Jump = dokickjump;
+
+	DoControls[DO_PUNCH_HIT1].Frame = dopunchhit1;
+	DoControls[DO_PUNCH_HIT1].Count = dopunchhit1frame;
+	DoControls[DO_PUNCH_HIT1].Jump = dopunchhit1jump;
+
+	DoControls[DO_PUNCH_HIT2].Frame = dopunchhit2;
+	DoControls[DO_PUNCH_HIT2].Count = dopunchhit2frame;
+	DoControls[DO_PUNCH_HIT2].Jump = dopunchhit2jump;
+
+	DoControls[DO_PUNCH_DEATH].Frame = dopunchdeath;
+	DoControls[DO_PUNCH_DEATH].Count = dopunchdeathframe;
+	DoControls[DO_PUNCH_DEATH].Jump = dopunchdeathjump;
+
+	DoControls[DO_KICK_HIT1].Frame = dokickhit1;
+	DoControls[DO_KICK_HIT1].Count = dokickhit1frame;
+	DoControls[DO_KICK_HIT1].Jump = dokickhit1jump;
+
+	DoControls[DO_KICK_HIT2].Frame = dokickhit2;
+	DoControls[DO_KICK_HIT2].Count = dokickhit2frame;
+	DoControls[DO_KICK_HIT2].Jump = dokickhit2jump;
+
+	DoControls[DO_KICK_DEATH].Frame = dokickdeath;
+	DoControls[DO_KICK_DEATH].Count = dokickdeathframe;
+	DoControls[DO_KICK_DEATH].Jump = dokickdeathjump;
+
+	DoControls[DO_READY_WEAPON].Frame = doreadyweapon;
+	DoControls[DO_READY_WEAPON].Count = doreadyweaponframe;
+	DoControls[DO_READY_WEAPON].Jump = doreadyweaponjump;
+
+	DoControls[DO_GUN_DEATH].Frame = dogundeath;
+	DoControls[DO_GUN_DEATH].Count = dogundeathframe;
+	DoControls[DO_GUN_DEATH].Jump = dogundeathjump;
+
+	DoControls[DO_EXPLOSION_DEATH].Frame = doexplosiondeath;
+	DoControls[DO_EXPLOSION_DEATH].Count = doexplosiondeathframe;
+	DoControls[DO_EXPLOSION_DEATH].Jump = doexplosiondeathjump;
+
+	DoControls[DO_EXPLOSION2_DEATH].Frame = doexplosion2death;
+	DoControls[DO_EXPLOSION2_DEATH].Count = doexplosion2deathframe;
+	DoControls[DO_EXPLOSION2_DEATH].Jump = doexplosion2deathjump;
+
+	DoControls[DO_GRENADE_DEATH].Frame = dogrenadedeath;
+	DoControls[DO_GRENADE_DEATH].Count = dogrenadedeathframe;
+	DoControls[DO_GRENADE_DEATH].Jump = dogrenadedeathjump;
+
+	DoControls[DO_FIRE_DEATH].Frame = dofiredeath;
+	DoControls[DO_FIRE_DEATH].Count = dofiredeathframe;
+	DoControls[DO_FIRE_DEATH].Jump = dofiredeathjump;
+
+	DoControls[DO_GESTURE1].Frame = dogesture1;
+	DoControls[DO_GESTURE1].Count = dogesture1frame;
+	DoControls[DO_GESTURE1].Jump = dogesture1jump;
+
+	DoControls[DO_SALUTE1].Frame = dosalute1;
+	DoControls[DO_SALUTE1].Count = dosalute1frame;
+	DoControls[DO_SALUTE1].Jump = dosalute1jump;
+
+	DoControls[DO_GESTURE2].Frame = dogesture2;
+	DoControls[DO_GESTURE2].Count = dogesture2frame;
+	DoControls[DO_GESTURE2].Jump = dogesture2jump;
+
+	DoControls[DO_SALUTE2].Frame = dosalute2;
+	DoControls[DO_SALUTE2].Count = dosalute2frame;
+	DoControls[DO_SALUTE2].Jump = dosalute2jump;
+
+	DoControls[DO_PULL_GUN].Frame = dopullgun;
+	DoControls[DO_PULL_GUN].Count = dopullgunframe;
+	DoControls[DO_PULL_GUN].Jump = dopullgunjump;
+
+	DoControls[DO_PLEAD].Frame = doplead;
+	DoControls[DO_PLEAD].Count = dopleadframe;
+	DoControls[DO_PLEAD].Jump = dopleadjump;
+
+	DoControls[DO_PLEAD_DEATH].Frame = dopleaddeath;
+	DoControls[DO_PLEAD_DEATH].Count = dopleaddeathframe;
+	DoControls[DO_PLEAD_DEATH].Jump = dopleaddeathjump;
+#endif	//cuts
+}
 
 /***********************************************************************************************
  * InfantryTypeClass::Create_One_Of -- Creates an infantry object.                             *

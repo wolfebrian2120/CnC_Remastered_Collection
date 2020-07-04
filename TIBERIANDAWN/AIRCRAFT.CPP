@@ -245,6 +245,7 @@ AircraftClass::AircraftClass(AircraftType classid, HousesType house) :
 	NavCom = TARGET_NONE;
 	SecondaryFacing = PrimaryFacing;
 	Jitter = 0;
+	IsSelfHealing = Class->IsSelfHealing;
 
 	/*
 	** Keep count of the number of units created. Dont track cargo planes as they are created
@@ -607,6 +608,10 @@ int AircraftClass::Mission_Hunt(void)
 {
 	Validate();
 	if (Class->IsFixedWing) {
+		if (Class->Primary == WEAPON_NONE && Class->Secondary == WEAPON_NONE) {
+			Assign_Mission(MISSION_RETREAT);
+			return(1);
+		}
 		enum {
 			LOOK_FOR_TARGET,
 			FLY_TO_TARGET,
@@ -706,6 +711,16 @@ int AircraftClass::Mission_Hunt(void)
 void AircraftClass::AI(void)
 {
 	Validate();
+
+	/*
+	**	If this is a vehicle that heals itself (e.g., Mammoth Tank), then it will perform
+	**	the heal logic here.
+	*/
+	if (this->IsSelfHealing && (Frame % 16) == 0 && Health_Ratio() < 0x0080) {
+		Strength++;
+		Mark(MARK_CHANGE);
+	}
+
 	/*
 	**	A Mission change can always occur if the aircraft is landed or flying.
 	*/
@@ -1600,10 +1615,15 @@ ResultType AircraftClass::Take_Damage(int & damage, int distance, WarheadType wa
 
 	switch (res) {
 		case RESULT_DESTROYED:
-			Kill_Cargo(source);
-			Death_Announcement();
-			new AnimClass(ANIM_FBALL1, Target_Coord());
-			Delete_This();
+			{
+				Kill_Cargo(source);
+				Death_Announcement();
+				COORDINATE coord = Target_Coord();
+				if (!(coord & 0xC000C000L)) {
+					new AnimClass(ANIM_FBALL1, coord);
+				}
+				Delete_This();
+			}
 			break;
 
 		default:

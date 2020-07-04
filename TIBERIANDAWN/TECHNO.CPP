@@ -215,6 +215,7 @@ TechnoTypeClass::TechnoTypeClass(
 	Reward = reward;
 	Scenario = scenario;
 	SightRange = sightrange;
+	IsSelfHealing = 0;
 
 	/*
 	** Units risk value is based on the type of weapon he has and the
@@ -225,6 +226,110 @@ TechnoTypeClass::TechnoTypeClass(
 	if (primary != WEAPON_NONE) {
 		Risk = (Weapons[primary].Attack * (Weapons[primary].Range >> 4)) / Weapons[primary].ROF;
 	}
+}
+
+TechnoTypeClass::TechnoTypeClass(
+	int name,
+	char const* ininame,
+	unsigned char level,
+	long pre,
+	bool is_leader,
+	bool is_scanner,
+	bool is_nominal,
+	bool is_transporter,
+	bool is_flammable,
+	bool is_crushable,
+	bool is_stealthy,
+	bool is_selectable,
+	bool is_legal_target,
+	bool is_insignificant,
+	bool is_immune,
+	bool is_theater,
+	bool is_twoshooter,
+	bool is_turret_equipped,
+	bool is_repairable,
+	bool is_buildable,
+	bool is_crew,
+	bool is_selfhealing,
+	int ammo,
+	unsigned short strength,
+	MPHType maxspeed,
+	int sightrange,
+	int cost,
+	int scenario,
+	int risk,
+	int reward,
+	int ownable,
+	WeaponType primary,
+	WeaponType secondary,
+	ArmorType armor) :
+ObjectTypeClass(true,
+	is_flammable,
+	is_crushable,
+	is_stealthy,
+	is_selectable,
+	is_legal_target,
+	is_insignificant,
+	is_immune,
+	name,
+	ininame,
+	armor,
+	strength)
+{
+	Level = level;
+	Pre = pre;
+	MaxAmmo = ammo;
+	MaxSpeed = maxspeed;
+	CameoData = NULL;
+	Primary = primary,
+		Secondary = secondary,
+		Cost = cost;
+	IsLeader = is_leader;
+	IsScanner = is_scanner;
+	IsTransporter = is_transporter;
+	IsTwoShooter = is_twoshooter;
+	IsBuildable = is_buildable;
+	IsCrew = is_crew;
+	IsTheater = is_theater;
+	IsRepairable = is_repairable;
+	IsTurretEquipped = is_turret_equipped;
+	IsNominal = is_nominal;
+	Ownable = ownable;
+	Reward = reward;
+	Scenario = scenario;
+	SightRange = sightrange;
+	IsSelfHealing = is_selfhealing;
+
+	/*
+	** Units risk value is based on the type of weapon he has and the
+	** rate of fire it shoots at.
+	*/
+	risk = risk;
+	Risk = 0;
+	if (primary != WEAPON_NONE) {
+		Risk = (Weapons[primary].Attack * (Weapons[primary].Range >> 4)) / Weapons[primary].ROF;
+	}
+}
+
+/***********************************************************************************************
+ * TechnoTypeClass::Raw_Cost -- Fetches the raw (base) cost of the object.                     *
+ *                                                                                             *
+ *    This routine is used to find the underlying cost for this object. The underlying cost    *
+ *    does not include any free items that normally come with the object when purchased        *
+ *    directly. Example: The raw cost of a refinery is the normal cost minus the cost of a     *
+ *    harvester.                                                                               *
+ *                                                                                             *
+ * INPUT:   none                                                                               *
+ *                                                                                             *
+ * OUTPUT:  Returns whether the object selfheals or not.                              *
+ *                                                                                             *
+ * WARNINGS:   none                                                                            *
+ *                                                                                             *
+ * HISTORY:                                                                                    *
+ *   08/13/1995 JLB : Created.                                                                 *
+ *=============================================================================================*/
+bool TechnoTypeClass::GetSelfHealing() {
+	return (IsSelfHealing);
 }
 
 
@@ -290,7 +395,15 @@ unsigned short TechnoTypeClass::Get_Ownable(void) const
  *=============================================================================================*/
 int TechnoTypeClass::Time_To_Build(HousesType house) const
 {
-	int cost = Raw_Cost();
+	/*
+	**	Base time is the raw cost.
+	*/
+	int time = Raw_Cost();
+
+	HouseClass* hptr = HouseClass::As_Pointer(house);
+	if (!hptr || !hptr->IsActive) {
+		return time;
+	}
 
 	/*
 	**	For computer controlled buildings, slow down production on
@@ -299,9 +412,8 @@ int TechnoTypeClass::Time_To_Build(HousesType house) const
 	if (PlayerPtr->Difficulty != DIFF_HARD &&
 		GameToPlay == GAME_NORMAL &&
 		What_Am_I() == RTTI_BUILDINGTYPE &&
-		PlayerPtr->Class->House != house) {
-
-		cost = (cost + (PlayerPtr->Difficulty == DIFF_EASY ? 4000 : 2000)) / 2;
+		PlayerPtr->Class->House != hptr->Class->House) {
+		time = (time + (PlayerPtr->Difficulty == DIFF_EASY ? 4000 : 2000)) / 2;
 	}
 
 	/*
@@ -309,10 +421,35 @@ int TechnoTypeClass::Time_To_Build(HousesType house) const
 	**	an airfield.
 	*/
 	if (What_Am_I() == RTTI_UNITTYPE && !(Ownable & HOUSEF_GOOD)) {
-		return (cost - (cost/4));
+		time -= (time / 4);
 	}
 
-	return(cost);
+	/*
+	**	Adjust time according to IQ setting of computer controlled house. The
+	**	build time will range from double normal time at the slowest to
+	**	just normal time at the fastest.
+	*/
+	if (!hptr->IsHuman && Rule.Diff[hptr->Difficulty].IsBuildSlowdown) {
+		time = (int)((time * Rule.MaxIQ * 2.0f) / (hptr->IQ + Rule.MaxIQ));
+	}
+
+	/*
+	**	Adjust the time to build based on the power output of the owning house.
+	*/
+	int power = hptr->Power_Fraction();
+	int inv_scale(256);
+	if (power == 0x000) {
+		inv_scale = 64;
+	}
+	else if (power < 0x080) {
+		inv_scale = 103;
+	}
+	else if (power < 0x0100) {
+		inv_scale = 171;
+	}
+	time = (time * 256) / inv_scale;
+
+	return(time);
 }
 
 
@@ -484,6 +621,7 @@ TechnoClass::TechnoClass(void) :
 	IsTethered = false;
 	SuspendedTarCom = TARGET_NONE;
 	PrimaryFacing.Set(DIR_N);
+	IsSelfHealing = false;
 
 	// Added for multiplayer changes. ST - 3/6/2019 11:34AM
 	IsDiscoveredByPlayerMask = 0;
@@ -988,7 +1126,9 @@ void TechnoClass::Draw_It(int x, int y, WindowNumberType window)
 {
 	Clear_Redraw_Flag();
 
-	const bool show_health_bar = (Strength > 0) && (Is_Selected_By_Player() ||
+	const bool show_health_bar =
+		(Strength > 0) && ((Cloak != CLOAKED) || Is_Owned_By_Player()) &&
+		(Is_Selected_By_Player() ||
 		((Special.HealthBarDisplayMode == SpecialClass::HB_DAMAGED) && (Strength < Techno_Type_Class()->MaxStrength)) ||
 		(Special.HealthBarDisplayMode == SpecialClass::HB_ALWAYS));
 
@@ -1013,10 +1153,8 @@ void TechnoClass::Draw_It(int x, int y, WindowNumberType window)
 		for (int i = start_line; i < LineCount; i++) {
 			CC_Draw_Line(Lines[i][0], Lines[i][1], Lines[i][2], Lines[i][3], (unsigned char)Lines[i][4], LineFrame, window);
 		}
-		if ((window == WINDOW_VIRTUAL) && (++LineFrame >= LineMaxFrames)) {
-			LineCount = 0;
-			LineFrame = 0;
-			LineMaxFrames = 0;
+		if (window == WINDOW_VIRTUAL) {
+			LineFrame++;
 		}
 	}
 
@@ -1968,8 +2106,13 @@ void TechnoClass::AI(void)
 	/*
 	**	Handle line delay logic.
 	*/
-	if ((LineMaxFrames > 0) && (LineCount > 0)) {
+	if (LineMaxFrames > 0) {
 		Map.Flag_To_Redraw(true);
+		if (LineFrame >= LineMaxFrames) {
+			LineCount = 0;
+			LineFrame = 0;
+			LineMaxFrames = 0;
+		}
 	}
 
 	/*
@@ -2249,6 +2392,9 @@ BulletClass * TechnoClass::Fire_At(TARGET target, int which)
 	COORDINATE				fire_coord;			// Coordinate of firing position.
 	TechnoTypeClass const & tclass = *Techno_Type_Class();
 	ObjectClass		*object;
+	if ((which == 0 && tclass.Primary == WEAPON_NONE) || (which != 0 && tclass.Secondary == WEAPON_NONE)) {
+		return(NULL);
+	}
 	WeaponTypeClass const *weapon = (which == 0) ? &Weapons[tclass.Primary] : &Weapons[tclass.Secondary];
 	BulletTypeClass const &btype = BulletTypeClass::As_Reference(weapon->Fires);
 
@@ -2558,11 +2704,17 @@ ActionType TechnoClass::What_Action(ObjectClass * object) const
 		//if (IsOwnedByPlayer && (ctrldown || !House->Is_Ally(object)) && (ctrldown || object->Class_Of().IsLegalTarget || (Special.IsTreeTarget && object->What_Am_I() == RTTI_TERRAIN))) {
 			if (Can_Player_Move() || In_Range(object, 0)) {
 				// Check for anti-air capability
-				if ((object->What_Am_I() != RTTI_AIRCRAFT) ||
-					((Techno_Type_Class()->Primary != WEAPON_NONE) && BulletTypeClass::As_Reference(Weapons[Techno_Type_Class()->Primary].Fires).IsAntiAircraft) ||
-					((Techno_Type_Class()->Secondary != WEAPON_NONE) && BulletTypeClass::As_Reference(Weapons[Techno_Type_Class()->Secondary].Fires).IsAntiAircraft) ||
-					(((AircraftClass *)object)->Altitude == 0)) {
+				if (object->What_Am_I() != RTTI_AIRCRAFT) {
 					return(ACTION_ATTACK);
+				} else {
+					AircraftClass* aircraft = (AircraftClass*)object;
+					if (*aircraft != AIRCRAFT_CARGO) {
+						if (((Techno_Type_Class()->Primary != WEAPON_NONE) && BulletTypeClass::As_Reference(Weapons[Techno_Type_Class()->Primary].Fires).IsAntiAircraft) ||
+							((Techno_Type_Class()->Secondary != WEAPON_NONE) && BulletTypeClass::As_Reference(Weapons[Techno_Type_Class()->Secondary].Fires).IsAntiAircraft) ||
+							(aircraft->Altitude == 0)) {
+							return(ACTION_ATTACK);
+						}
+					}
 				}
 			}
 		}

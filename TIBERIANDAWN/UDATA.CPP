@@ -361,6 +361,7 @@ static UnitTypeClass const UnitHTank(
 		true,				// Can it be repaired in a repair facility?
 		true,				// Can the player construct or order this unit?
 		true,				// Is there a crew inside?
+		true,				// Is Self Healing
 		false,			// Does it have a rotating radar dish?
 		false,			// Is there an associated firing animation?
 		false,			// Must the turret be in a locked down position while moving?
@@ -1450,38 +1451,40 @@ UnitTypeClass::UnitTypeClass(UnitType type,
 				unsigned rot,
 				int toffset,
 				MissionType order) :
-					TechnoTypeClass(name,
-										ininame,
-										level,
-										pre,
-										is_leader,
-										false,
-										is_nominal,
-										is_transporter,
-										false,
-										is_crushable,
-										is_stealthy,
-										is_selectable,
-										is_legal_target,
-										is_insignificant,
-										is_immune,
-										false,
-										is_twoshooter,
-										is_turret_equipped,
-										is_repairable,
-										is_buildable,
-										is_crew,
-										ammo,
-										strength,
-										maxSpeed,
-										sightrange,
-										cost,
-										scenario,
-										risk,
-										reward,
-										ownable,
-										primary,secondary,
-										armor)
+TechnoTypeClass(
+	name,				//name
+	ininame,			//ininame
+	level,				//level
+	pre,				//pre
+	is_leader,			//is_leader
+	false,				//is_scanner
+	is_nominal,			//is_nominal
+	is_transporter,		//is_transporter
+	false,				//is_flammable
+	is_crushable,		//is_crushable
+	is_stealthy,		//is_stealthy
+	is_selectable,		//is_selectable
+	is_legal_target,	//is_legal_target
+	is_insignificant,	//is_insignificant
+	is_immune,			//is_immune
+	false,				//is_theater
+	is_twoshooter,		//is_twoshooter
+	is_turret_equipped,	//is_turret_equipped
+	is_repairable,		//is_repairable
+	is_buildable,		//is_buildable
+	is_crew,			//is_crew
+	ammo,				//ammo
+	strength,			//strength
+	maxSpeed,			//maxSpeed
+	sightrange,			//sightrange
+	cost,				//cost
+	scenario,			//scenario
+	risk,				//risk
+	reward,				//reward
+	ownable,			//ownable
+	primary,			//primary
+	secondary,			//secondary
+	armor)				//armor
 {
 	Explosion = exp;
 	IsCrateGoodie = is_goodie;
@@ -1501,6 +1504,114 @@ UnitTypeClass::UnitTypeClass(UnitType type,
 	Speed = speed;
 	TurretOffset = toffset;
 	Type = type;
+	IsSelfHealing = false;
+
+}
+
+UnitTypeClass::UnitTypeClass(UnitType type,
+	int name,
+	char const* ininame,
+	AnimType exp,
+	unsigned char level,
+	long pre,
+	bool is_goodie,
+	bool is_leader,
+	bool is_eight,
+	bool is_nominal,
+	bool is_transporter,
+	bool is_crushable,
+	bool is_crusher,
+	bool is_harvest,
+	bool is_stealthy,
+	bool is_selectable,
+	bool is_legal_target,
+	bool is_insignificant,
+	bool is_immune,
+	bool is_turret_equipped,
+	bool is_twoshooter,
+	bool is_repairable,
+	bool is_buildable,
+	bool is_crew,
+	bool is_selfhealing,
+	bool is_radar_equipped,
+	bool is_fire_anim,
+	bool is_lock_turret,
+	bool is_tracked,
+	bool is_gigundo,
+	bool is_chunky,
+	bool is_cloakable,
+	bool is_animating,
+	int ammo,
+	unsigned short strength,
+	int sightrange,
+	int cost,
+	int scenario,
+	int risk,
+	int reward,
+	int ownable,
+	WeaponType primary, WeaponType secondary,
+	ArmorType armor,
+	SpeedType speed,
+	MPHType maxSpeed,
+	unsigned rot,
+	int toffset,
+	MissionType order) :
+TechnoTypeClass(
+	name,				//name
+	ininame,			//ininame
+	level,				//level
+	pre,				//pre
+	is_leader,			//is_leader
+	false,				//is_scanner
+	is_nominal,			//is_nominal
+	is_transporter,		//is_transporter
+	false,				//is_flammable
+	is_crushable,		//is_crushable
+	is_stealthy,		//is_stealthy
+	is_selectable,		//is_selectable
+	is_legal_target,	//is_legal_target
+	is_insignificant,	//is_insignificant
+	is_immune,			//is_immune
+	false,				//is_theater
+	is_twoshooter,		//is_twoshooter
+	is_turret_equipped,	//is_turret_equipped
+	is_repairable,		//is_repairable
+	is_buildable,		//is_buildable
+	is_crew,			//is_crew
+	true,				//is_selfhealing
+	ammo,				//ammo
+	strength,			//strength
+	maxSpeed,			//maxSpeed
+	sightrange,			//sightrange
+	cost,				//cost
+	scenario,			//scenario
+	risk,				//risk
+	reward,				//reward
+	ownable,			//ownable
+	primary,			//primary
+	secondary,			//secondary
+	armor)				//armor
+{
+	Explosion = exp;
+	IsCrateGoodie = is_goodie;
+	IsPieceOfEight = is_eight;
+	IsCloakable = is_cloakable;
+	IsChunkyShape = is_chunky;
+	IsCrusher = is_crusher;
+	IsFireAnim = is_fire_anim;
+	IsGigundo = is_gigundo;
+	IsLockTurret = is_lock_turret;
+	IsRadarEquipped = is_radar_equipped;
+	IsToHarvest = is_harvest;
+	IsTracked = is_tracked;
+	IsAnimating = is_animating;
+	Mission = order;
+	ROT = rot;
+	Speed = speed;
+	TurretOffset = toffset;
+	Type = type;
+	IsSelfHealing = is_selfhealing;
+
 }
 
 
