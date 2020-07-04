@@ -12,4 +12,5 @@
 *.res
 *.lib
 *.dll
-TIBERIANDAWN/Win32/Release/TiberianDawn.vcxproj.FileListAbsolute.txt
+TIBERIANDAWN/Win32/Release/*
+.vs/CnCRemastered/v16/.suo
