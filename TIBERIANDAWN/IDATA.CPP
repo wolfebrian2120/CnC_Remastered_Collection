@@ -431,7 +431,7 @@ static InfantryTypeClass const E5(
 	2,								// Frame of projectile launch.
 	0,								// Frame of projectile launch while prone.
 	200,							// Strength of infantry (in damage points).
-	1,								// Sight range.
+	3,								// Sight range.
 	50,							// Cost of infantry (in credits).
 	1,							// Scenario when they first appear.
 	80,10,						// Risk/Reward of this infantry unit.

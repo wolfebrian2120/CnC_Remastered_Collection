@@ -776,7 +776,6 @@ static BuildingTypeClass const ClassHelipad(
 	HOUSEF_MULTI5|
 	HOUSEF_MULTI6|
 	HOUSEF_JP|
-	HOUSEF_BAD|
 	HOUSEF_GOOD,							// OWNABLE:		Ownable by house (bit field).
 	WEAPON_NONE,WEAPON_NONE,
 	ARMOR_WOOD,								// ARMOR:		Armor type
@@ -789,6 +788,61 @@ static BuildingTypeClass const ClassHelipad(
 	(short const *)List2,			// OCCUPYLIST:	List of active foundation squares.
 	(short const *)NULL			// OVERLAPLIST:List of overlap cell offset.
 );
+
+/*static BuildingTypeClass const ClassNodHelipad(
+	STRUCT_HELIPAD,
+	TXT_HELIPAD,							// NAME:			Short name of the structure.
+	"HPAD",									// NAME:			Short name of the structure.
+	XYP_COORD(0, 0),						// Exit point for produced units.
+	1,								// Build level.
+	STRUCTF_REFINERY,			// Building prerequisite.
+	false,		// Has ability to detect adjacent cloaked objects?
+	false,		// Animation rate is regulated for constant speed?
+	true,			// Requires a bib dirt patch?
+	false,		// Always use the given name for the building?
+	false,		// Is this a wall type structure?
+	true,		// Is it a factory type building?
+	true,			// Can this building be captured?
+	false,		// Does it catch fire?
+	false,		// Simple (one frame) damage imagery?
+	false,		// Is it invisible to radar?
+	true,			// Can the player select this?
+	true,			// Is this a legal target for attack or move?
+	false,		// Is this an insignificant building?
+	false,		// Is it immune to normal combat damage?
+	false,		// Theater specific graphic image?
+	false,		// Does it have a rotating turret?
+	false,		// Fires multiple shots in quick succession?
+	true,			// Can it be repaired?
+	true,			// Can it be manufactured by the player?
+	false,		// Does it contain a crew?
+	false,		// Does building care less if placed on concrete?
+	RTTI_AIRCRAFTTYPE,					// The object type produced at this factory.
+	DIR_N,									// Starting idle frame to match construction.
+	400,										// STRNTH:		Full strength of building.
+	3,											// SIGHTRANGE:	Range of sighting.
+	1500,										// COST:			Cost to purchase.
+	1,										// SCENARIO:	Starting availability scenario.
+	0, 65,										// RISK/RWRD:	Risk/reward rating values.
+	HOUSEF_MULTI1 |
+	HOUSEF_MULTI2 |
+	HOUSEF_MULTI3 |
+	HOUSEF_MULTI4 |
+	HOUSEF_MULTI5 |
+	HOUSEF_MULTI6 |
+	HOUSEF_JP |
+	HOUSEF_BAD,							// OWNABLE:		Ownable by house (bit field).
+	WEAPON_NONE, WEAPON_NONE,
+	ARMOR_WOOD,								// ARMOR:		Armor type
+	0,											// CANENTER:	Units that can enter building.
+	0,											// CAPACITY:	Spice storage capacity.
+	0,											// POWER:		Power points required.
+	10,										// DRAIN:		Power points required.
+	BSIZE_22, 								// SIZE:			Building size.
+	NULL,										// Preferred exit cell list.
+	(short const*)List2,			// OCCUPYLIST:	List of active foundation squares.
+	(short const*)NULL			// OVERLAPLIST:List of overlap cell offset.
+);*/
 
 static BuildingTypeClass const ClassCommand(
 	STRUCT_RADAR,
@@ -3922,6 +3976,7 @@ BuildingTypeClass const * const BuildingTypeClass::Pointers[STRUCT_COUNT] = {
 	&Brick,					// STRUCT_BRICK_WALL
 	&Barbwire,				// STRUCT_BARBWIRE_WALL
 	&Wood,					//	STRUCT_WOOD_WALL
+	//&ClassNodHelipad,
 };
 
 void const *WarFactoryOverlay;

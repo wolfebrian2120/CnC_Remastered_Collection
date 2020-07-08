@@ -214,7 +214,7 @@ static UnitTypeClass const UnitSTank(
 	HOUSEF_MULTI6|
 	HOUSEF_JP|
 	HOUSEF_BAD,								// OWNABLE:		Ownable by house (bit field).
-	WEAPON_OBELISK_LASER,WEAPON_NONE,
+	WEAPON_OBELISK_LASER, WEAPON_MLRS,
 	ARMOR_ALUMINUM,						// ARMOR:		Armor type
 	SPEED_TRACK,							// MOVE:			Locomotion type.
 	MPH_MEDIUM_FAST,						// SPEED:		Miles per hour.
@@ -723,7 +723,7 @@ static UnitTypeClass const UnitMCV(
 		false,			// Is the unit capable of cloaking?
 		false,			// Does the unit have a constant animation?
 	-1,										// AMMO:			Number of shots it has (default).
-	600,										// STRENGTH:	Strength (in damage points).
+	2000,										// STRENGTH:	Strength (in damage points).
 	2,											// SIGHTRANGE:	Range of sighting.
 	5000,										// COST:			Cost to build (Credits).
 	15,										// SCENARIO:	Starting availability scenario.
