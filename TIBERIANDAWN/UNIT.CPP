@@ -304,26 +304,26 @@ void UnitClass::Debug_Dump(MonoClass *mono) const
 	Validate();
 	mono->Set_Cursor(0, 0);
 	mono->Print(
-		"ÚName:ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂMission:ÄÄÄÂTarCom:ÂNavCom:ÂRadio:ÂCoord:ÄÄÂHeadTo:ÄÂSt:Ä¿\n"
-		"³                   ³           ³       ³       ³      ³        ³        ³    ³\n"
-		"ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂNÂYÂHealth:ÄÂBody:ÂTurret:ÂSpeed:ÂPath:ÁÄÄÄÄÄÄÂCargo:ÄÄÄÄÁÄÄÄÄ´\n"
-		"³Active........³ ³ ³        ³     ³       ³      ³            ³               ³\n"
-		"³Limbo.........³ ³ ÃÄÄÄÄÄÄÄÄÁÄÄÄÄÄÁÄÄÄÄÄÄÄÁÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´\n"
-		"³Owned.........³ ³ ³Last Message:                                             ³\n"
-		"³Discovered....³ ³ ÃTimer:ÂArm:ÂTrack:ÂTiberium:ÂFlash:ÂStage:ÂTeam:ÄÄÄÄÂArch:´\n"
-		"³Selected......³ ³ ³      ³    ³      ³         ³      ³      ³         ³     ³\n"
-		"³Teathered.....³ ³ ÃÄÄÄÄÄÄÁÄÄÄÄÁÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÁÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÙ\n"
-		"³Locked on Map.³ ³ ³                                                           \n"
-		"³Turret Locked.³ ³ ³                                                           \n"
-		"³Is A Loaner...³ ³ ³                                                           \n"
-		"³Deploying.....³ ³ ³                                                           \n"
-		"³Rotating......³ ³ ³                                                           \n"
-		"³Firing........³ ³ ³                                                           \n"
-		"³Driving.......³ ³ ³                                                           \n"
-		"³To Look.......³ ³ ³                                                           \n"
-		"³Recoiling.....³ ³ ³                                                           \n"
-		"³To Display....³ ³ ³                                                           \n"
-		"ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÁÄÙ                                                           \n");
+		"ï¿½Name:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Mission:ï¿½ï¿½ï¿½ï¿½TarCom:ï¿½NavCom:ï¿½Radio:ï¿½Coord:ï¿½ï¿½ï¿½HeadTo:ï¿½ï¿½St:Ä¿\n"
+		"ï¿½                   ï¿½           ï¿½       ï¿½       ï¿½      ï¿½        ï¿½        ï¿½    ï¿½\n"
+		"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½Yï¿½Health:ï¿½ï¿½Body:ï¿½Turret:ï¿½Speed:ï¿½Path:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Cargo:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä´\n"
+		"ï¿½Active........ï¿½ ï¿½ ï¿½        ï¿½     ï¿½       ï¿½      ï¿½            ï¿½               ï¿½\n"
+		"ï¿½Limbo.........ï¿½ ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä´\n"
+		"ï¿½Owned.........ï¿½ ï¿½ ï¿½Last Message:                                             ï¿½\n"
+		"ï¿½Discovered....ï¿½ ï¿½ ï¿½Timer:ï¿½Arm:ï¿½Track:ï¿½Tiberium:ï¿½Flash:ï¿½Stage:ï¿½Team:ï¿½ï¿½ï¿½ï¿½ï¿½Arch:ï¿½\n"
+		"ï¿½Selected......ï¿½ ï¿½ ï¿½      ï¿½    ï¿½      ï¿½         ï¿½      ï¿½      ï¿½         ï¿½     ï¿½\n"
+		"ï¿½Teathered.....ï¿½ ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n"
+		"ï¿½Locked on Map.ï¿½ ï¿½ ï¿½                                                           \n"
+		"ï¿½Turret Locked.ï¿½ ï¿½ ï¿½                                                           \n"
+		"ï¿½Is A Loaner...ï¿½ ï¿½ ï¿½                                                           \n"
+		"ï¿½Deploying.....ï¿½ ï¿½ ï¿½                                                           \n"
+		"ï¿½Rotating......ï¿½ ï¿½ ï¿½                                                           \n"
+		"ï¿½Firing........ï¿½ ï¿½ ï¿½                                                           \n"
+		"ï¿½Driving.......ï¿½ ï¿½ ï¿½                                                           \n"
+		"ï¿½To Look.......ï¿½ ï¿½ ï¿½                                                           \n"
+		"ï¿½Recoiling.....ï¿½ ï¿½ ï¿½                                                           \n"
+		"ï¿½To Display....ï¿½ ï¿½ ï¿½                                                           \n"
+		"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½                                                           \n");
 	mono->Set_Cursor(1, 1);mono->Printf("%s:%s", House->Class->IniName, Class->IniName);
 	CargoClass::Debug_Dump(mono);
 	MissionClass::Debug_Dump(mono);
@@ -390,7 +390,7 @@ void UnitClass::AI(void)
 	**	Delete this unit if it finds itself off the edge of the map and it is in
 	**	guard or other static mission mode.
 	*/
-	if (!Team && Mission == MISSION_GUARD && !Map.In_Radar(Coord_Cell(Coord))) {
+	if (!Team && Mission == MISSION_GUARD && MissionQueue == MISSION_NONE && !Map.In_Radar(Coord_Cell(Coord))) {
 		Stun();
 		Delete_This();
 		return;
@@ -513,6 +513,13 @@ void UnitClass::AI(void)
 				}
 			}
 		}
+	}
+
+	/*
+	**	Scatter units off buildings in guard modes.
+	*/
+	if (!IsTethered && !IsFiring && !IsDriving && !IsRotating && (Mission == MISSION_GUARD || Mission == MISSION_GUARD_AREA) && MissionQueue == MISSION_NONE && Map[Coord_Cell(Coord)].Cell_Building() != NULL) {
+		Scatter(0, true, true);
 	}
 
 	/*
@@ -755,6 +762,22 @@ RadioMessageType UnitClass::Receive_Message(RadioClass * from, RadioMessageType 
 				return(RADIO_ROGER);
 			}
 			break;
+
+		/*
+		**	Something bad has happened to the object in contact with. Abort any coordinated
+		**	activity with this object. Basically, ... run away! Run away!
+		*/
+		case RADIO_RUN_AWAY:
+			if (Class->IsToHarvest && In_Radio_Contact() && Mission == MISSION_ENTER) {
+				TechnoClass * contact = Contact_With_Whom();
+				if (contact->What_Am_I() == RTTI_BUILDING && *((BuildingClass*)contact) == STRUCT_REFINERY) {
+					// Slight hack; set a target so the harvest mission knows to skip to finding home state
+					Assign_Mission(MISSION_HARVEST);
+					TarCom = As_Target();
+					return(RADIO_ROGER);
+				}
+			}
+			return(DriveClass::Receive_Message(from, message, param));
 
 		/*
 		**	When this message is received, it means that the other object
@@ -1206,6 +1229,7 @@ UnitClass::UnitClass(UnitType classid, HousesType house) :
 	Ammo = Class->MaxAmmo;
 	IsCloakable = Class->IsCloakable;
 	IsSelfHealing = Class->IsSelfHealing;
+	TiberiumUnloadRefinery = NULL;
 	if (Class->IsAnimating) Set_Rate(Options.Normalize_Delay(3));
 
 	/*
@@ -1274,6 +1298,11 @@ void UnitClass::Player_Assign_Mission(MissionType mission, TARGET target, TARGET
 	Validate();
 	if (mission == MISSION_HARVEST) {
 		ArchiveTarget = TARGET_NONE;
+	} else if (mission == MISSION_ENTER) {
+		BuildingClass* building = As_Building(destination);
+		if (building != NULL && *building == STRUCT_REFINERY && building->In_Radio_Contact()) {
+			building->Transmit_Message(RADIO_OVER_OUT);
+		}
 	}
 	TarComClass::Player_Assign_Mission(mission, target, destination);
 }
@@ -1832,7 +1861,7 @@ void UnitClass::Per_Cell_Process(bool center)
 		} else {
 			TechnoClass * contact = Contact_With_Whom();
 			if (Transmit_Message(RADIO_UNLOADED) == RADIO_RUN_AWAY) {
-				if (*this == UNIT_HARVESTER && contact && contact->What_Am_I() == RTTI_BUILDING) {
+				if (*this == UNIT_HARVESTER && contact && contact->What_Am_I() == RTTI_BUILDING && *((BuildingClass*)contact) != STRUCT_REPAIR) {
 					Assign_Mission(MISSION_HARVEST);
 				} else if (!Target_Legal(NavCom)) {
 					Scatter(0, true);
@@ -2323,7 +2352,7 @@ int UnitClass::Tiberium_Check(CELL &center, int x, int y)
 	//using function for IsVisible so we have different results for different players - JAS 2019/09/30
 	if ((GameToPlay != GAME_NORMAL || (!IsOwnedByPlayer || Map[center].Is_Visible(PlayerPtr)))) {
 		if (!Map[center].Cell_Techno() && Map[center].Land_Type() == LAND_TIBERIUM) {
-			return(Map[center].OverlayData);
+			return(Map[center].OverlayData+1);
 		}
 	}
 	return(0);
@@ -2348,28 +2377,47 @@ bool UnitClass::Goto_Tiberium(void)
 				int tiberium = 0;
 				int besttiberium = 0;
 				for (int x = -radius; x <= radius; x++) {
-					tiberium = Tiberium_Check(cell, x, -radius);
+
+					/*
+					**	Randomize the corners.
+					*/
+					int corner[2];
+					int corners[4][2] = {
+						{x, -radius},
+						{x, +radius},
+						{-radius, x},
+						{+radius, x}
+					};
+					for (int i = 0; i < 3; i++) {
+						int j = i + rand() / (RAND_MAX / (4 - i) + 1);
+						memcpy(&corner, &corners[j], sizeof(corner));
+						memcpy(&corners[j], &corners[i], sizeof(corner));
+						memcpy(&corners[i], corner, sizeof(corner));
+					}
+
+					cell = center;
+					tiberium = Tiberium_Check(cell, corners[0][0], corners[0][1]);
 					if (tiberium > besttiberium) {
 						bestcell = cell;
 						besttiberium = tiberium;
 					}
 
 					cell = center;
-					tiberium = Tiberium_Check(cell, x, +radius);
+					tiberium = Tiberium_Check(cell, corners[1][0], corners[1][1]);
 					if (tiberium > besttiberium) {
 						bestcell = cell;
 						besttiberium = tiberium;
 					}
 
 					cell = center;
-					tiberium = Tiberium_Check(cell, -radius, x);
+					tiberium = Tiberium_Check(cell, corners[2][0], corners[2][1]);
 					if (tiberium > besttiberium) {
 						bestcell = cell;
 						besttiberium = tiberium;
 					}
 
 					cell = center;
-					tiberium = Tiberium_Check(cell, +radius, x);
+					tiberium = Tiberium_Check(cell, corners[3][0], corners[3][1]);
 					if (tiberium > besttiberium) {
 						bestcell = cell;
 						besttiberium = tiberium;
@@ -2384,6 +2432,29 @@ bool UnitClass::Goto_Tiberium(void)
 	}
 
 	return(false);
+}
+
+
+BuildingClass* UnitClass::Find_Best_Refinery(void) const
+{
+	/*
+	**	Remember our last refinery and prefer that one, if still available and valid.
+	*/
+	if (TiberiumUnloadRefinery != NULL) {
+		if (TiberiumUnloadRefinery->House == House &&
+			!TiberiumUnloadRefinery->IsInLimbo &&
+			TiberiumUnloadRefinery->Mission != MISSION_DECONSTRUCTION &&
+			*TiberiumUnloadRefinery == STRUCT_REFINERY) {
+			return TiberiumUnloadRefinery;
+		} else {
+			TiberiumUnloadRefinery = NULL;
+		}
+	}
+
+	/*
+	**	Find nearby refinery and head to it?
+	*/
+	return Find_Docking_Bay(STRUCT_REFINERY, false);
 }
 
 
@@ -2672,7 +2743,14 @@ int UnitClass::Mission_Harvest(void)
 		*/
 		case LOOKING:
 			IsHarvesting = false;
-			if (Goto_Tiberium()) {
+			/*
+			**	Slightly hacky; if TarCom is set then skip to finding home state.
+			*/
+			if (Target_Legal(TarCom)) {
+				Assign_Target(TARGET_NONE);
+				Status = FINDHOME;
+				return(1);
+			} else if (Goto_Tiberium()) {
 				IsHarvesting = true;
 				Set_Rate(2);
 				Set_Stage(0);
@@ -2734,9 +2812,9 @@ int UnitClass::Mission_Harvest(void)
 			if (!Target_Legal(NavCom)) {
 
 				/*
-				**	Find nearby refinery and head to it?
+				**	Find best refinery.
 				*/
-				BuildingClass * nearest = Find_Docking_Bay(STRUCT_REFINERY, false);
+				BuildingClass * nearest = Find_Best_Refinery();
 
 				/*
 				**	Since the refinery said it was ok to load, establish radio
@@ -2746,7 +2824,7 @@ int UnitClass::Mission_Harvest(void)
 					Status = HEADINGHOME;
 				} else {
 					ScenarioInit++;
-					nearest = Find_Docking_Bay(STRUCT_REFINERY, false);
+					nearest = Find_Best_Refinery();
 					ScenarioInit--;
 					if (nearest) {
 						Assign_Destination(::As_Target(nearest->Nearby_Location(this)));
@@ -2843,6 +2921,28 @@ int UnitClass::Mission_Hunt(void)
 }
 
 
+int UnitClass::Mission_Enter(void)
+{
+	Validate();
+	if (Class->IsToHarvest) {
+		TechnoClass * contact = Contact_With_Whom();
+		if (contact == NULL) {
+			contact = As_Techno(ArchiveTarget);
+		}
+		if (contact == NULL) {
+			contact = As_Techno(NavCom);
+		}
+		if (contact != NULL &&
+			contact->What_Am_I() == RTTI_BUILDING &&
+			*((BuildingClass*)contact) == STRUCT_REFINERY) {
+			TiberiumUnloadRefinery = (BuildingClass*)contact;
+		}
+	}
+
+	return(TarComClass::Mission_Enter());
+}
+
+
 /***********************************************************************************************
  * UnitClass::Look -- Perform map revelation from a unit's position.                           *
  *                                                                                             *
@@ -2868,7 +2968,7 @@ void UnitClass::Look(bool incremental)
 {
 	Validate();
 	//if (!IsInLimbo && IsOwnedByPlayer) {				// Changed for mapping of multiple players
-	if (!IsInLimbo && House && House->IsHuman) {
+	if (!IsInLimbo && House && (House->IsHuman || GameToPlay != GAME_NORMAL)) {
 		int sight = Class->SightRange;
 
 		if (sight) {

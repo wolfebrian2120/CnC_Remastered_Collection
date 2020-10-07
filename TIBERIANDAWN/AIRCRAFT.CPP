@@ -246,6 +246,7 @@ AircraftClass::AircraftClass(AircraftType classid, HousesType house) :
 	SecondaryFacing = PrimaryFacing;
 	Jitter = 0;
 	IsSelfHealing = Class->IsSelfHealing;
+	ReinforcementStart = -1;
 
 	/*
 	** Keep count of the number of units created. Dont track cargo planes as they are created
@@ -347,6 +348,14 @@ void AircraftClass::Draw_It(int x, int y, WindowNumberType window)
 	int shapenum = 0;
 	int facing = Facing_To_32(SecondaryFacing);
 
+	/*
+	**	Don't draw Cargo aircraft that are delayed.
+	*/
+	if (Special.ModernBalance) {
+		if (*this == AIRCRAFT_CARGO && !Map.In_Radar(Coord_Cell(Coord)) && ReinforcementStart > Frame) {
+			return;
+		}
+	}
 
 	/*
 	**	Verify the legality of the unit class.
@@ -754,7 +763,17 @@ void AircraftClass::AI(void)
 			Mark();
 		}
 	}
-	if (Physics(Coord, PrimaryFacing) != RESULT_NONE) {
+
+	/*
+	**	Handle reinforcement delay.
+	*/
+	bool do_physics = true;
+	if (Special.ModernBalance) {
+		if (*this == AIRCRAFT_CARGO && !Map.In_Radar(Coord_Cell(Coord)) && ReinforcementStart > Frame) {
+			do_physics = false;
+		}
+	}
+	if (do_physics && Physics(Coord, PrimaryFacing) != RESULT_NONE) {
 		Mark();
 	}
 
@@ -1410,9 +1429,13 @@ int AircraftClass::Mission_Retreat(void)
 {
 	Validate();
 	if (Class->IsFixedWing) {
-		if (Class->IsFixedWing && Altitude < FLIGHT_LEVEL) {
+		if (*this == AIRCRAFT_CARGO) {
+			PrimaryFacing.Set_Desired(DIR_W);
+			SecondaryFacing.Set_Desired(PrimaryFacing.Desired());
+		}
+		if (Altitude < FLIGHT_LEVEL) {
 			Altitude++;
-			return(3);
+			return(1);
 		}
 		return(TICKS_PER_SECOND*10);
 	}
@@ -1887,15 +1910,24 @@ void AircraftClass::Enter_Idle_Mode(bool )
 				} else {
 
 					/*
-					**	Normal aircraft try to find a good landing spot to rest.
+					**	Continue with the current helipad if there is one.
 					*/
-					BuildingClass * building = Find_Docking_Bay(STRUCT_HELIPAD, false);
-					Assign_Destination(TARGET_NONE);
-					if (building && Transmit_Message(RADIO_HELLO, building) == RADIO_ROGER) {
-						mission = MISSION_ENTER;
+					if (!In_Radio_Contact() ||
+						Contact_With_Whom()->What_Am_I() != RTTI_BUILDING ||
+						*((BuildingClass*)Contact_With_Whom()) != STRUCT_HELIPAD) {
+						/*
+						**	Normal aircraft try to find a good landing spot to rest.
+						*/
+						BuildingClass * building = Find_Docking_Bay(STRUCT_HELIPAD, false);
+						Assign_Destination(TARGET_NONE);
+						if (building && Transmit_Message(RADIO_HELLO, building) == RADIO_ROGER) {
+							mission = MISSION_ENTER;
+						} else {
+							Assign_Destination(Good_LZ());
+							mission = MISSION_MOVE;
+						}
 					} else {
-						Assign_Destination(Good_LZ());
-						mission = MISSION_MOVE;
+						mission = MISSION_ENTER;
 					}
 				}
 			} else {
@@ -1980,26 +2012,26 @@ void AircraftClass::Debug_Dump(MonoClass *mono) const
 	Validate();
 	mono->Set_Cursor(0, 0);
 	mono->Print(
-		"ÚName:ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂMission:ÄÄÄÂTarCom:ÂNavCom:ÂRadio:ÂCoord:ÄÄÂAltitudeÂSt:Ä¿\n"
-		"³                   ³           ³       ³       ³      ³        ³        ³    ³\n"
-		"ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂNÂYÂHealth:ÄÂFdir:ÂÄBdir:ÄÂSpeed:ÂÄÄÄÄÄÁÄÄÄÄÄÄÂCargo:ÄÄÄÄÁÄÄÄÄ´\n"
-		"³Active........³ ³ ³        ³     ³       ³      ³            ³               ³\n"
-		"³Limbo.........³ ³ ÃÄÄÄÄÄÄÄÄÁÄÄÄÄÄÁÄÄÄÄÄÄÄÁÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´\n"
-		"³Owned.........³ ³ ³Last Message:                                             ³\n"
-		"³Discovered....³ ³ ÃTimer:ÂArm:ÂÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÂFlash:ÂStage:ÂTeam:ÄÄÄÄÂArch:´\n"
-		"³Selected......³ ³ ³      ³    ³      ³         ³      ³      ³         ³     ³\n"
-		"³Teathered.....³ ³ ÃÄÄÄÄÄÄÁÄÄÄÄÁÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÁÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÙ\n"
-		"³Locked on Map.³ ³ ³                                                           \n"
-		"³              ³ ³ ³                                                           \n"
-		"³Is A Loaner...³ ³ ³                                                           \n"
-		"³Is Landing....³ ³ ³                                                           \n"
-		"³Is Taking Off.³ ³ ³                                                           \n"
-		"³              ³ ³ ³                                                           \n"
-		"³              ³ ³ ³                                                           \n"
-		"³              ³ ³ ³                                                           \n"
-		"³Recoiling.....³ ³ ³                                                           \n"
-		"³To Display....³ ³ ³                                                           \n"
-		"ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÁÄÙ                                                           \n");
+		"ï¿½Name:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Mission:ï¿½ï¿½ï¿½ï¿½TarCom:ï¿½NavCom:ï¿½Radio:ï¿½Coord:ï¿½ï¿½ï¿½Altitudeï¿½St:Ä¿\n"
+		"ï¿½                   ï¿½           ï¿½       ï¿½       ï¿½      ï¿½        ï¿½        ï¿½    ï¿½\n"
+		"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½Yï¿½Health:ï¿½ï¿½Fdir:ï¿½ï¿½Bdir:ï¿½ï¿½Speed:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Cargo:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä´\n"
+		"ï¿½Active........ï¿½ ï¿½ ï¿½        ï¿½     ï¿½       ï¿½      ï¿½            ï¿½               ï¿½\n"
+		"ï¿½Limbo.........ï¿½ ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä´\n"
+		"ï¿½Owned.........ï¿½ ï¿½ ï¿½Last Message:                                             ï¿½\n"
+		"ï¿½Discovered....ï¿½ ï¿½ ï¿½Timer:ï¿½Arm:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Flash:ï¿½Stage:ï¿½Team:ï¿½ï¿½ï¿½ï¿½ï¿½Arch:ï¿½\n"
+		"ï¿½Selected......ï¿½ ï¿½ ï¿½      ï¿½    ï¿½      ï¿½         ï¿½      ï¿½      ï¿½         ï¿½     ï¿½\n"
+		"ï¿½Teathered.....ï¿½ ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n"
+		"ï¿½Locked on Map.ï¿½ ï¿½ ï¿½                                                           \n"
+		"ï¿½              ï¿½ ï¿½ ï¿½                                                           \n"
+		"ï¿½Is A Loaner...ï¿½ ï¿½ ï¿½                                                           \n"
+		"ï¿½Is Landing....ï¿½ ï¿½ ï¿½                                                           \n"
+		"ï¿½Is Taking Off.ï¿½ ï¿½ ï¿½                                                           \n"
+		"ï¿½              ï¿½ ï¿½ ï¿½                                                           \n"
+		"ï¿½              ï¿½ ï¿½ ï¿½                                                           \n"
+		"ï¿½              ï¿½ ï¿½ ï¿½                                                           \n"
+		"ï¿½Recoiling.....ï¿½ ï¿½ ï¿½                                                           \n"
+		"ï¿½To Display....ï¿½ ï¿½ ï¿½                                                           \n"
+		"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½                                                           \n");
 	mono->Set_Cursor(1, 1);mono->Printf("%s:%s", House->Class->IniName, Class->IniName);
 	mono->Set_Cursor(36, 3);mono->Printf("%02X:%02X", SecondaryFacing.Current(), SecondaryFacing.Desired());
 	mono->Set_Cursor(42, 1);mono->Printf("%04X", NavCom);
@@ -2186,7 +2218,7 @@ ActionType AircraftClass::What_Action(CELL cell) const
 	ActionType action = FootClass::What_Action(cell);
 
 	//using function for IsVisible so we have different results for different players - JAS 2019/09/30
-	if (action == ACTION_MOVE && !Map[cell].Is_Visible(PlayerPtr)) {
+	if ((action == ACTION_MOVE || action == ACTION_ATTACK) && !Map[cell].Is_Visible(PlayerPtr)) {
 		action = ACTION_NOMOVE;
 	}
 
@@ -2356,6 +2388,11 @@ int AircraftClass::Mission_Attack(void)
 				return(1);
 			}
 
+			/*
+			**	Clear second shot flag so fire burst works correctly.
+			*/
+			IsSecondShot = false;
+
 			PrimaryFacing.Set_Desired(Direction(TarCom));
 			SecondaryFacing.Set_Desired(Direction(TarCom));
 			switch (Can_Fire(TarCom, 0)) {
@@ -2449,7 +2486,7 @@ int AircraftClass::Mission_Attack(void)
  * HISTORY:                                                                                    *
  *   06/19/1995 JLB : Created.                                                                 *
  *=============================================================================================*/
-TARGET AircraftClass::New_LZ(TARGET oldlz) const
+TARGET AircraftClass::New_LZ(TARGET oldlz, bool stable) const
 {
 	Validate();
 	if (Target_Legal(oldlz) && (!Is_LZ_Clear(oldlz) || !Cell_Seems_Ok(As_Cell(oldlz)))) {
@@ -2460,7 +2497,7 @@ TARGET AircraftClass::New_LZ(TARGET oldlz) const
 		**	in cells.
 		*/
 		for (int radius = 0; radius < 16; radius++) {
-			FacingType modifier = Random_Pick(FACING_N, FACING_NW);
+			FacingType modifier = stable ? FACING_N : Random_Pick(FACING_N, FACING_NW);
 			CELL lastcell = -1;
 
 			/*
@@ -2849,8 +2886,9 @@ TARGET AircraftClass::Good_Fire_Location(TARGET target) const
 			for (int face = 0; face < 255; face += 16) {
 				COORDINATE newcoord = Coord_Move(tcoord, (DirType)face, r);
 				CELL newcell = Coord_Cell(newcoord);
+				CELL actualcell = Coord_Cell(Coord_Sub(newcoord, XYPixel_Coord(0, FLIGHT_LEVEL)));
 
-				if (Map.In_Radar(newcell) && (GameToPlay != GAME_NORMAL || Map[newcell].Is_Visible(PlayerPtr)) && Cell_Seems_Ok(newcell, true)) {
+				if (Map.In_Radar(actualcell) && (GameToPlay != GAME_NORMAL || Map[newcell].Is_Visible(PlayerPtr)) && Cell_Seems_Ok(newcell, true)) {
 					int dist = Distance(newcoord);
 					if (bestval == -1 || dist < bestval) {
 						best2val = bestval;
@@ -3556,4 +3594,9 @@ void AircraftClass::Response_Select(void)
 	if (AllowVoice) {
 		Sound_Effect(response, 0, -(Aircraft.ID(this)+1));
 	}
+}
+
+void AircraftClass::Set_Reinforcement_Delay(long delay)
+{
+	ReinforcementStart = Frame + delay;
 }
